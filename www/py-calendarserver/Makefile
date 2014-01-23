@@ -46,11 +46,11 @@ SHEBANG_FILES=\
 USE_RC_SUBR=	caldavd
 
 SVN_REPOSITORY_URL=\
-https://svn.calendarserver.org/repository/calendarserver
+http://svn.calendarserver.org/repository/calendarserver
 SVN_TAG1=		CalendarServer/tags/release/${DISTNAME}
-SVN_CMD1=		svn --trust-server-cert export
+SVN_CMD1=		svn export
 SVN_TAG2=		PyCalendar/trunk
-SVN_CMD2=		svn --trust-server-cert export -r11458
+SVN_CMD2=		svn export -r11458
 
 DOCROOTDIR=		/var/db/caldavd/Data/Documents
 LOGDIR=			/var/log/caldavd
