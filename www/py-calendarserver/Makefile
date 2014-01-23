@@ -29,6 +29,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1:${PORTSDIR}/databases/py-sqlp
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}xattr>=0.6:${PORTSDIR}/devel/py-xattr
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}zope.interface>=3.8:${PORTSDIR}/devel/py-zope.interface
 
+NEED_ROOT=			yes
 USE_PYTHON=			2.7+
 USE_PGSQL=			yes
 WANT_PGSQL_VER=		90+
