@@ -113,5 +113,7 @@ man/man8/calendarserver_shell.8.gz
 %%PORTDOCS%%@dirrmtry %%DOCSDIR%%/Client-Server
 %%PORTDOCS%%@dirrmtry %%DOCSDIR%%/Admin
 %%PORTDOCS%%@dirrm %%DOCSDIR%%
+@unexec rmdir etc/caldavd/auth
+@unexec rmdir etc/caldavd
 @unexec rmdir /var/log/caldavd
 @unexec rmdir /var/db/caldavd

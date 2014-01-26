@@ -29,6 +29,11 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1:${PORTSDIR}/databases/py-sqlp
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}xattr>=0.6:${PORTSDIR}/devel/py-xattr
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}zope.interface>=3.8:${PORTSDIR}/devel/py-zope.interface
 
+OPTIONS_DEFINE= EXAMPLES DOCS
+OPTIONS_DEFAULT=EXAMPLES DOCS
+EXAMPLES_DESC=	Install configuration examples
+DOCS_DESC=		Install additional documentation
+
 NEED_ROOT=			yes
 USE_PYTHON=			2.7+
 USE_PGSQL=			yes
@@ -94,19 +99,19 @@ post-install:
 
 	${MKDIR} ${STAGEDIR}${DOCROOTDIR}
 	${MKDIR} ${STAGEDIR}${CONFIGDIR}
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	${MKDIR} ${STAGEDIR}${LOGDIR}
 	(cd ${WRKSRC}/bin && ${COPYTREE_BIN} . ${STAGEDIR}${$PREFIX}/bin)
-	${CP} -p ${WRKSRC}/conf/caldavd.plist ${STAGEDIR}${CONFIGDIR}/caldavd.plist.sample
+.if ${PORT_OPTIONS:MEXAMPLES}
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	(cd ${WRKSRC}/conf && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
-
-.if !defined(NOPORTDOCS)
+.endif
+.if ${PORT_OPTIONS:MDOCS}
 	cd ${WRKSRC}/doc && \
 	for i in `ls |${GREP} -v '.8'`; do \
 		${MKDIR} -p ${STAGEDIR}${DOCSDIR}/$${i} && \
 		${INSTALL_MAN} ${WRKSRC}/doc/$${i}/* ${STAGEDIR}${DOCSDIR}/$${i}; done
 	${CP} -p ${WRKSRC}/txdav/common/datastore/sql_schema/current.sql ${STAGEDIR}${DOCSDIR}
-	${INSTALL_MAN} ${WRKSRC}/doc/*.8 ${STAGEDIR}${PREFIX}/man/man8
 .endif
+	${INSTALL_MAN} ${WRKSRC}/doc/*.8 ${STAGEDIR}${PREFIX}/man/man8
 
 .include <bsd.port.mk>
