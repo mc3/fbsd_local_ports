@@ -30,7 +30,6 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}xattr>=0.6:${PORTSDIR}/devel/py-xattr
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}zope.interface>=3.8:${PORTSDIR}/devel/py-zope.interface
 
 OPTIONS_DEFINE= EXAMPLES DOCS
-OPTIONS_DEFAULT=EXAMPLES DOCS
 EXAMPLES_DESC=	Install configuration examples
 DOCS_DESC=		Install additional documentation
 
@@ -101,17 +100,13 @@ post-install:
 	${MKDIR} ${STAGEDIR}${CONFIGDIR}
 	${MKDIR} ${STAGEDIR}${LOGDIR}
 	(cd ${WRKSRC}/bin && ${COPYTREE_BIN} . ${STAGEDIR}${$PREFIX}/bin)
-.if ${PORT_OPTIONS:MEXAMPLES}
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	(cd ${WRKSRC}/conf && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
-.endif
-.if ${PORT_OPTIONS:MDOCS}
 	cd ${WRKSRC}/doc && \
 	for i in `ls |${GREP} -v '.8'`; do \
 		${MKDIR} -p ${STAGEDIR}${DOCSDIR}/$${i} && \
 		${INSTALL_MAN} ${WRKSRC}/doc/$${i}/* ${STAGEDIR}${DOCSDIR}/$${i}; done
 	${CP} -p ${WRKSRC}/txdav/common/datastore/sql_schema/current.sql ${STAGEDIR}${DOCSDIR}
-.endif
 	${INSTALL_MAN} ${WRKSRC}/doc/*.8 ${STAGEDIR}${PREFIX}/man/man8
 
 .include <bsd.port.mk>
