@@ -42,6 +42,8 @@ USE_PYDISTUTILS=	yes
 PYDISTUTILS_PKGVERSION=	5.1
 PYDISTUTILS_AUTOPLIST=	yes
 
+SUB_FILES=			pkg-message
+
 SHEBANG_FILES=\
 	${WRKSRC}/calendarserver/tools/backup_pg.py \
 	${WRKSRC}/calendarserver/tools/backup.py \
