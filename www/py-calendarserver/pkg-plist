@@ -113,13 +113,18 @@ man/man8/calendarserver_shell.8.gz
 %%PORTDOCS%%@dirrmtry %%DOCSDIR%%/Client-Server
 %%PORTDOCS%%@dirrmtry %%DOCSDIR%%/Admin
 %%PORTDOCS%%@dirrm %%DOCSDIR%%
+@group _dcs
 @exec mkdir -p %D/etc/caldavd/auth
 @unexec rmdir %D/etc/caldavd/auth
 @unexec rmdir %D/etc/caldavd
+@group 
+@owner _dcs
 @exec mkdir -p /var/db/caldavd/Data/Documents
 @unexec rmdir /var/db/caldavd/Data/Documents
 @unexec rmdir /var/db/caldavd/Data
 @exec mkdir -p /var/db/caldavd/Documents
 @unexec rmdir /var/db/caldavd/Documents
 @unexec rmdir /var/db/caldavd
+@owner
+@exec mkdir /var/log/caldavd
 @unexec rmdir /var/log/caldavd
