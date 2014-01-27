@@ -4,7 +4,7 @@
 
 PORTNAME=		calendarserver
 PORTVERSION=	5.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=		www python
 MASTER_SITES=	https://svn.calendarserver.org/repository/calendarserver/CalendarServer/tags/release/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
