@@ -29,7 +29,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1:${PORTSDIR}/databases/py-sqlp
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}xattr>=0.6:${PORTSDIR}/devel/py-xattr
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}zope.interface>=3.8:${PORTSDIR}/devel/py-zope.interface
 
-OPTIONS_DEFINE= EXAMPLES DOCS
+OPTIONS_DEFINE=	EXAMPLES DOCS
 EXAMPLES_DESC=	Install configuration examples
 DOCS_DESC=		Install additional documentation
 
