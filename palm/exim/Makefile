@@ -1,7 +1,7 @@
 # Created by: markm@FreeBSD.org
 # $FreeBSD: head/mail/exim/Makefile 365343 2014-08-18 19:13:18Z antoine $
 
-PORTNAME=	my_exim
+PORTNAME=	exim
 PORTVERSION?=	${EXIM_VERSION}
 PORTREVISION?=	1
 CATEGORIES=	palm ipv6
