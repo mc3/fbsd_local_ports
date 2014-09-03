@@ -1,10 +1,10 @@
 # Created by: markm@FreeBSD.org
 # $FreeBSD: head/mail/exim/Makefile 365343 2014-08-18 19:13:18Z antoine $
 
-PORTNAME=	exim
+PORTNAME=	my_exim
 PORTVERSION?=	${EXIM_VERSION}
 PORTREVISION?=	1
-CATEGORIES=	local ipv6
+CATEGORIES=	mail ipv6
 MASTER_SITES=	${MASTER_SITE_EXIM:S/$/:exim/}
 MASTER_SITE_SUBDIR=	exim4/:exim
 DISTNAME=	${PORTNAME}-${EXIM_VERSION}
