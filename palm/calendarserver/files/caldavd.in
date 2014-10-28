@@ -18,7 +18,7 @@
 . /etc/rc.subr
 
 : ${caldavd_enable="NO"}
-: ${caldavd_conf="/usr/local/etc/caldavd/caldavd.plist"}
+: ${caldavd_conf="%%PREFIX%%/etc/caldavd/caldavd.plist"}
 
 
 name="caldavd"
