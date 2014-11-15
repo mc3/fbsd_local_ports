@@ -17,6 +17,7 @@ FETCH_DEPENDS=	svn:${PORTSDIR}/devel/subversion
 BUILD_DEPENDS=	${FETCH_DEPENDS}
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		memcached:${PORTSDIR}/databases/memcached \
+		python:${PORTSDIR}/lang/python \
 		${PYTHON_PKGNAMEPREFIX}pycrypto>=2.5:${PORTSDIR}/security/py-pycrypto \
 		${PYTHON_PKGNAMEPREFIX}dateutil>=2.1:${PORTSDIR}/devel/py-dateutil \
 		${PYTHON_PKGNAMEPREFIX}openssl>=0.13:${PORTSDIR}/security/py-openssl \
@@ -33,7 +34,7 @@ EXAMPLES_DESC=	Install configuration examples
 DOCS_DESC=	Install additional documentation
 
 NEED_ROOT=	yes
-USES=		shebangfix pgsql:9.0+ python:run twisted:run,conch,mail,names,runner,web,words
+USES=		shebangfix pgsql:9.0+ python twisted:run,conch,mail,names,runner,web,words
 USE_PYTHON=	autoplist distutils
 
 SUB_FILES=	pkg-message
