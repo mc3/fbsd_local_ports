@@ -67,6 +67,8 @@ SHEBANG_FILES=\
     ${WRKSRC}/bin/calendarserver_shell \
     ${WRKSRC}/bin/calendarserver_upgrade \
     ${WRKSRC}/bin/calendarserver_verify_data \
+    ${WRKSRC}/bin/icalendar_split \
+    ${WRKSRC}/bin/proxyclean \
 	${WRKSRC}/calendarserver/tools/backup_pg.py \
 	${WRKSRC}/calendarserver/tools/backup.py \
 	${WRKSRC}/twext/python/test/pullpipe.py
