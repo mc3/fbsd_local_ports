@@ -2,7 +2,7 @@
 
 PORTNAME=	calendarserver
 PORTVERSION=	5.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www python
 MASTER_SITES=	LOCAL/wg
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,7 +17,6 @@ FETCH_DEPENDS=	svn:${PORTSDIR}/devel/subversion
 BUILD_DEPENDS=	${FETCH_DEPENDS}
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		memcached:${PORTSDIR}/databases/memcached \
-		python:${PORTSDIR}/lang/python \
 		${PYTHON_PKGNAMEPREFIX}pycrypto>=2.5:${PORTSDIR}/security/py-pycrypto \
 		${PYTHON_PKGNAMEPREFIX}dateutil>=2.1:${PORTSDIR}/devel/py-dateutil \
 		${PYTHON_PKGNAMEPREFIX}openssl>=0.13:${PORTSDIR}/security/py-openssl \
@@ -40,7 +39,34 @@ USE_PYTHON=	autoplist distutils
 SUB_FILES=	pkg-message
 SUB_LIST+=	USER=${USERS}
 
+python_OLD_CMD=	/usr/bin/env python
+python_CMD=	    ${PYTHON_CMD}
+
 SHEBANG_FILES=\
+    ${WRKSRC}/bin/calendarserver_backup \
+    ${WRKSRC}/bin/calendarserver_bootstrap_database \
+    ${WRKSRC}/bin/calendarserver_command_gateway \
+    ${WRKSRC}/bin/calendarserver_config \
+    ${WRKSRC}/bin/calendarserver_dbinspect \
+    ${WRKSRC}/bin/calendarserver_dkimtool \
+    ${WRKSRC}/bin/calendarserver_export \
+    ${WRKSRC}/bin/calendarserver_icalendar_validate \
+    ${WRKSRC}/bin/calendarserver_load_augmentdb \
+    ${WRKSRC}/bin/calendarserver_make_partition \
+    ${WRKSRC}/bin/calendarserver_manage_postgres \
+    ${WRKSRC}/bin/calendarserver_manage_principals \
+    ${WRKSRC}/bin/calendarserver_manage_push \
+    ${WRKSRC}/bin/calendarserver_manage_timezones \
+    ${WRKSRC}/bin/calendarserver_migrate_resources \
+    ${WRKSRC}/bin/calendarserver_monitor_amp_notifications \
+    ${WRKSRC}/bin/calendarserver_monitor_notifications \
+    ${WRKSRC}/bin/calendarserver_monitor_work \
+    ${WRKSRC}/bin/calendarserver_purge_attachments \
+    ${WRKSRC}/bin/calendarserver_purge_events \
+    ${WRKSRC}/bin/calendarserver_purge_principals \
+    ${WRKSRC}/bin/calendarserver_shell \
+    ${WRKSRC}/bin/calendarserver_upgrade \
+    ${WRKSRC}/bin/calendarserver_verify_data \
 	${WRKSRC}/calendarserver/tools/backup_pg.py \
 	${WRKSRC}/calendarserver/tools/backup.py \
 	${WRKSRC}/twext/python/test/pullpipe.py
