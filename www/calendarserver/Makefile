@@ -40,12 +40,12 @@ SUB_FILES=	pkg-message
 SUB_LIST+=	USER=${USERS}
 
 python_OLD_CMD=	/usr/bin/env python
-python_CMD=	    ${PYTHON_CMD}
+python_CMD=		${PYTHON_CMD}
 
 SHEBANG_FILES=\
-    bin/calendarserver_* \
-    bin/icalendar_split \
-    bin/proxyclean \
+	bin/calendarserver_* \
+	bin/icalendar_split \
+	bin/proxyclean \
 	calendarserver/tools/backup_pg.py \
 	calendarserver/tools/backup.py \
 	twext/python/test/pullpipe.py
