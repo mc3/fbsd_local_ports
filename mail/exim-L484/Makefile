@@ -7,7 +7,6 @@ COMMENT=	Local exim variant with EXPERIMENTAL_TPDA turned on
 
 MASTERDIR=	${.CURDIR}/../exim
 
-EXIMON_ONLY=	yes
 OPTIONS_SLAVE=	PGSQL WISHLIST
 
 .include "${MASTERDIR}/Makefile"
