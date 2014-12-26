@@ -2,7 +2,7 @@
 
 PORTNAME=	calendarserver
 PORTVERSION=	5.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www python
 MASTER_SITES=	LOCAL/wg
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -33,6 +33,7 @@ OPTIONS_DEFINE=	EXAMPLES DOCS
 EXAMPLES_DESC=	Install configuration examples
 DOCS_DESC=	Install additional documentation
 OPTIONS_DEFAULT=	EXAMPLES DOCS
+bsd.port.options.mk
 
 NEED_ROOT=	yes
 USES=		shebangfix pgsql:9.0+ python \
