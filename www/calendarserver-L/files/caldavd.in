@@ -27,7 +27,7 @@ load_rc_config $name
 : ${caldavd_conf="%%PREFIX%%/etc/caldavd/caldavd.plist"}
 : ${caldavd_pidfile="/var/run/${name}.pid"}
 
-pidfile=${caldavd_pidfile}
+pidfile="/var/db/${name}/${name}.pid"
 required_files="${caldavd_conf}"
 
 procname="%%PYTHON_CMD%%"
