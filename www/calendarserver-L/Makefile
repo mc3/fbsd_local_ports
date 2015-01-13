@@ -96,8 +96,6 @@ post-patch:
 
 post-stage:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}/auth
-
-post-install:
 	(cd ${WRKSRC}/bin && ${COPYTREE_BIN} . ${STAGEDIR}${PREFIX}/bin)
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	(cd ${WRKSRC}/conf && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
