@@ -1,12 +1,11 @@
-# $FreeBSD: head/www/calendarserver/Makefile 372810 2014-11-19 19:45:08Z marino $
+# $FreeBSD: head/www/calendarserver/Makefile 393196 2015-07-29 22:09:53Z antoine $
 
 PORTNAME=	calendarserver
 PORTVERSION=	5.1
-PORTREVISION=	5
+PORTREVISION=	4
 CATEGORIES=	www python
 MASTER_SITES=	LOCAL/wg
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-PKGNAMESUFFIX=	-L
 DISTNAME=	CalendarServer-${PORTVERSION}
 
 MAINTAINER=	axel.rau@chaos1.de
@@ -21,7 +20,7 @@ RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		${PYTHON_PKGNAMEPREFIX}pycrypto>=2.5:${PORTSDIR}/security/py-pycrypto \
 		${PYTHON_PKGNAMEPREFIX}dateutil>=2.1:${PORTSDIR}/devel/py-dateutil \
 		${PYTHON_PKGNAMEPREFIX}openssl>=0.13:${PORTSDIR}/security/py-openssl \
-		${PYTHON_PKGNAMEPREFIX}psutil>=1.2:${PORTSDIR}/sysutils/py-psutil \
+		${PYTHON_PKGNAMEPREFIX}psutil>=1.2:${PORTSDIR}/sysutils/py-psutil121 \
 		${PYTHON_PKGNAMEPREFIX}PyGreSQL>=4.1:${PORTSDIR}/databases/py-PyGreSQL \
 		${PYTHON_PKGNAMEPREFIX}service_identity>=14.0.0:${PORTSDIR}/security/py-service_identity \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>=2.7:${PORTSDIR}/databases/py-sqlite3 \
@@ -35,7 +34,6 @@ DOCS_DESC=	Install additional documentation
 OPTIONS_DEFAULT=	EXAMPLES DOCS
 .include <bsd.port.options.mk>
 
-NEED_ROOT=	yes
 USES=		shebangfix pgsql:9.0+ python \
 		twisted:run,conch,mail,names,runner,web,words
 USE_PYTHON=	autoplist distutils
@@ -44,7 +42,6 @@ SUB_FILES=	pkg-message
 SUB_LIST+=	USER=${USERS}
 
 python_OLD_CMD=	/usr/bin/env python
-python_CMD=	${PYTHON_CMD}
 
 SHEBANG_FILES=	bin/calendarserver_* \
 		bin/icalendar_split \
@@ -94,7 +91,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/share/caldavd/lib/python/txdav/common/datastore|${SHAREDIR}|' ${WRKSRC}/calendarserver/tools/bootstrapdatabase.py
 	@${REINPLACE_CMD} -e 's|"_postgres"|"pgsql"|' ${WRKSRC}/calendarserver/tools/bootstrapdatabase.py
 
-post-stage:
+post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}/auth
 	(cd ${WRKSRC}/bin && ${COPYTREE_BIN} . ${STAGEDIR}${PREFIX}/bin)
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
