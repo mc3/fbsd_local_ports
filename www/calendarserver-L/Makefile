@@ -24,7 +24,7 @@ RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		${PYTHON_PKGNAMEPREFIX}PyGreSQL>=4.1:${PORTSDIR}/databases/py-PyGreSQL \
 		${PYTHON_PKGNAMEPREFIX}service_identity>=14.0.0:${PORTSDIR}/security/py-service_identity \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>=2.7:${PORTSDIR}/databases/py-sqlite3 \
-		${PYTHON_PKGNAMEPREFIX}sqlparse==0.1.2_1:${PORTSDIR}/databases/py-sqlparse \
+		${PYTHON_PKGNAMEPREFIX}sqlparse==0.1.2_1:${PORTSDIR}/databases/py-sqlparse-L \
 		${PYTHON_PKGNAMEPREFIX}xattr>=0.6:${PORTSDIR}/devel/py-xattr \
 		${PYTHON_PKGNAMEPREFIX}zope.interface>=3.8:${PORTSDIR}/devel/py-zope.interface
 
