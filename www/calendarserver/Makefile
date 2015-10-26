@@ -1,4 +1,4 @@
-# $FreeBSD: head/www/calendarserver/Makefile 393196 2015-07-29 22:09:53Z antoine $
+# $FreeBSD: head/www/calendarserver/Makefile 399684 2015-10-19 14:50:52Z amdmi3 $
 
 PORTNAME=	calendarserver
 PORTVERSION=	5.1
@@ -24,7 +24,7 @@ RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		${PYTHON_PKGNAMEPREFIX}PyGreSQL>=4.1:${PORTSDIR}/databases/py-PyGreSQL \
 		${PYTHON_PKGNAMEPREFIX}service_identity>=14.0.0:${PORTSDIR}/security/py-service_identity \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>=2.7:${PORTSDIR}/databases/py-sqlite3 \
-		${PYTHON_PKGNAMEPREFIX}sqlparse==0.1.2_1:${PORTSDIR}/databases/py-sqlparse-L \
+		${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1:${PORTSDIR}/databases/py-sqlparse \
 		${PYTHON_PKGNAMEPREFIX}xattr>=0.6:${PORTSDIR}/devel/py-xattr \
 		${PYTHON_PKGNAMEPREFIX}zope.interface>=3.8:${PORTSDIR}/devel/py-zope.interface
 
@@ -34,14 +34,13 @@ DOCS_DESC=	Install additional documentation
 OPTIONS_DEFAULT=	EXAMPLES DOCS
 .include <bsd.port.options.mk>
 
-USES=		shebangfix pgsql:9.0+ python \
+USES=		shebangfix pgsql python \
 		twisted:run,conch,mail,names,runner,web,words
 USE_PYTHON=	autoplist distutils
 
 SUB_FILES=	pkg-message
 SUB_LIST+=	USER=${USERS}
 
-python_OLD_CMD=	/usr/bin/env python
 
 SHEBANG_FILES=	bin/calendarserver_* \
 		bin/icalendar_split \
