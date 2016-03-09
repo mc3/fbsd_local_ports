@@ -1,4 +1,4 @@
-# $FreeBSD: head/www/calendarserver/Makefile 399684 2015-10-19 14:50:52Z amdmi3 $
+# $FreeBSD: head/www/calendarserver/Makefile 400207 2015-10-26 21:03:57Z pi $
 
 PORTNAME=	calendarserver
 PORTVERSION=	5.1
