@@ -14,7 +14,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>=15.2:${PORTSDIR}/devel/py-attrs \
-        ${PYTHON_PKGNAMEPREFIX}openssl>=0.15:${PORTSDIR}/security/py-openssl \
+		${PYTHON_PKGNAMEPREFIX}openssl>=0.15:${PORTSDIR}/security/py-openssl \
 		${PYTHON_PKGNAMEPREFIX}pyasn1>=0.1.9:${PORTSDIR}/devel/py-pyasn1 \
 		${PYTHON_PKGNAMEPREFIX}pyasn1-modules>=0.0.8:${PORTSDIR}/devel/py-pyasn1-modules \
 		${PYTHON_PKGNAMEPREFIX}characteristic>=14.1:${PORTSDIR}/devel/py-characteristic
