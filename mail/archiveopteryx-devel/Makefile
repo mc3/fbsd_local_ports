@@ -2,7 +2,7 @@
 # $FreeBSD: head/mail/archiveopteryx-devel/Makefile 407488 2016-01-29 17:12:39Z feld $
 
 PORTNAME=	archiveopteryx
-PORTVERSION=	3.2.99.20160212
+PORTVERSION=	3.2.99.20160325
 PORTREVISION=	0
 CATEGORIES=	mail
 PKGNAMESUFFIX=	-devel

@@ -1,5 +1,4 @@
 # Created by: Axel Rau <axel.rau@chaos1.de>
-# $FreeBSD: head/devel/py-characteristic/Makefile 369380 2014-09-27 08:34:11Z mva $
 
 PORTNAME=	attrs
 PORTVERSION=	15.2.0
