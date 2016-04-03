@@ -1,8 +1,7 @@
 # $FreeBSD: head/www/calendarserver/Makefile 400207 2015-10-26 21:03:57Z pi $
 
 PORTNAME=	calendarserver
-PORTVERSION=	5.1
-PORTREVISION=	6
+PORTVERSION=	7.0
 CATEGORIES=	www python
 MASTER_SITES=	LOCAL/wg
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -54,9 +53,9 @@ SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
 
 SVN_REPOSITORY_URL=	http://svn.calendarserver.org/repository/calendarserver
 SVN_TAG1=	CalendarServer/tags/release/${DISTNAME}
-SVN_CMD1=	svn export -r13980
+SVN_CMD1=	svn export -r15499
 SVN_TAG2=	PyCalendar/trunk
-SVN_CMD2=	svn export -r11458
+SVN_CMD2=	svn export -r15499
 
 LOGDIR=		/var/log/caldavd
 SHAREDIR=	${PREFIX}/share/caldavd
