@@ -33,20 +33,13 @@ DOCS_DESC=	Install additional documentation
 OPTIONS_DEFAULT=	EXAMPLES DOCS
 .include <bsd.port.options.mk>
 
-USES=		shebangfix pgsql python \
+USES=	pgsql python \
 		twisted:run,conch,mail,names,runner,web,words
 USE_PYTHON=	autoplist distutils
 
 SUB_FILES=	pkg-message
 SUB_LIST+=	USER=${USERS}
 
-
-SHEBANG_FILES=	bin/calendarserver_* \
-		bin/icalendar_split \
-		bin/proxyclean \
-		calendarserver/tools/backup_pg.py \
-		calendarserver/tools/backup.py \
-		twext/python/test/pullpipe.py
 
 USE_RC_SUBR=	caldavd
 SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
@@ -82,12 +75,7 @@ maint-gen-distfile:
 	fi
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|"{number} ({info})".format(number=version_number, info=version_info)|"5.1"|' ${WRKSRC}/setup.py
-	@${REINPLACE_CMD} -e 's|distutils.core|setuptools|g' ${WRKSRC}/setup.py
-	@${REINPLACE_CMD} -e 's|/usr/bin|${LOCALBASE}/bin|g' ${WRKSRC}/calendarserver/tools/bootstrapdatabase.py
 	@${REINPLACE_CMD} -e 's|"/etc/caldavd/caldavd.plist"|"${ETCDIR}/caldavd.plist"|g' ${WRKSRC}/twistedcaldav/stdconfig.py
-	@${REINPLACE_CMD} -e 's|/usr/share/caldavd/lib/python/txdav/common/datastore|${SHAREDIR}|' ${WRKSRC}/calendarserver/tools/bootstrapdatabase.py
-	@${REINPLACE_CMD} -e 's|"_postgres"|"pgsql"|' ${WRKSRC}/calendarserver/tools/bootstrapdatabase.py
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}/auth
