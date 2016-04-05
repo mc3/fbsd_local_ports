@@ -14,8 +14,7 @@ LICENSE=	APACHE20
 
 FETCH_DEPENDS=	svn:${PORTSDIR}/devel/subversion
 BUILD_DEPENDS=	${FETCH_DEPENDS}
-RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
-		memcached:${PORTSDIR}/databases/memcached \
+RUN_DEPENDS=	memcached:${PORTSDIR}/databases/memcached \
 		${PYTHON_PKGNAMEPREFIX}pycrypto>=2.5:${PORTSDIR}/security/py-pycrypto \
 		${PYTHON_PKGNAMEPREFIX}dateutil>=2.1:${PORTSDIR}/devel/py-dateutil \
 		${PYTHON_PKGNAMEPREFIX}openssl>=0.13:${PORTSDIR}/security/py-openssl \
@@ -75,11 +74,11 @@ maint-gen-distfile:
 	fi
 
 post-patch:
+	@${REINPLACE_CMD} -e 's|"{}.a1+unknown".format(base_version)|"7.0"|' ${WRKSRC}/setup.py
 	@${REINPLACE_CMD} -e 's|"/etc/caldavd/caldavd.plist"|"${ETCDIR}/caldavd.plist"|g' ${WRKSRC}/twistedcaldav/stdconfig.py
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}/auth
-	(cd ${WRKSRC}/bin && ${COPYTREE_BIN} . ${STAGEDIR}${PREFIX}/bin)
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	(cd ${WRKSRC}/conf && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
 	(cd ${WRKSRC}/doc && \
