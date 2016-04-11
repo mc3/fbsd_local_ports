@@ -72,6 +72,8 @@ maint-gen-distfile:
 		${MV} trunk/src/* . ; \
 		${ECHO_MSG} "=> Checking out twext from svn.calendarserver.org/..."; \
 		cd ${WRKDIR}/${DISTNAME} ; ${SVN_CMD3} ${SVN_REPOSITORY_URL}/${SVN_TAG3} > /dev/null ; \
+		${MV} twext-7.0-dev/twext . ; \
+		${MV} twext-7.0-dev/twisted/plugins/masterchild.py twisted/plugins/ ; \
 		${ECHO_MSG} "=> Creating tar archive ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"; \
 		cd ${WRKDIR} ; tar -czf ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} ${DISTNAME} ; \
 		${RM} -Rf ${WRKDIR}/${DISTNAME} ; \
