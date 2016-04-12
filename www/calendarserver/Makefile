@@ -15,7 +15,7 @@ LICENSE=	APACHE20
 FETCH_DEPENDS=	svn:${PORTSDIR}/devel/subversion
 BUILD_DEPENDS=	${FETCH_DEPENDS}
 RUN_DEPENDS=	memcached:${PORTSDIR}/databases/memcached \
-		${PYTHON_PKGNAMEPREFIX}cffi>=1.1:${PORTSDIR}/devel/py-cffi \
+		${PYTHON_PKGNAMEPREFIX}calendar=0.15020:${PORTSDIR}/devel/py-calendar \
 		${PYTHON_PKGNAMEPREFIX}PyGreSQL>=4.1:${PORTSDIR}/databases/py-PyGreSQL \
 		${PYTHON_PKGNAMEPREFIX}pycrypto>=2.6.1:${PORTSDIR}/security/py-pycrypto \
 		${PYTHON_PKGNAMEPREFIX}dateutil>=2.1:${PORTSDIR}/devel/py-dateutil \
@@ -26,6 +26,7 @@ RUN_DEPENDS=	memcached:${PORTSDIR}/databases/memcached \
 		${PYTHON_PKGNAMEPREFIX}service_identity>=14.0.0:${PORTSDIR}/security/py-service_identity \
 		${PYTHON_PKGNAMEPREFIX}setproctitle>=1.1.8:${PORTSDIR}/devel/py-setproctitle \
 		${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1:${PORTSDIR}/databases/py-sqlparse \
+		${PYTHON_PKGNAMEPREFIX}twext=0.7.0.dev15059:${PORTSDIR}/devel/py-twext \
 		${PYTHON_PKGNAMEPREFIX}zope.interface>=4.1.2:${PORTSDIR}/devel/py-zope.interface
 
 OPTIONS_DEFINE=	EXAMPLES DOCS
@@ -34,7 +35,7 @@ DOCS_DESC=	Install additional documentation
 OPTIONS_DEFAULT=	EXAMPLES DOCS
 .include <bsd.port.options.mk>
 
-USES=	pgsql python \
+USES=	pgsql:9.1+ python:2.7 \
 		twisted:run,conch,mail,names,runner,web,words
 USE_PYTHON=	autoplist distutils
 
@@ -67,13 +68,6 @@ maint-gen-distfile:
 		${MKDIR} ${WRKDIR} ; cd ${WRKDIR} ; ${RM} -Rf ${WRKDIR}/${DISTNAME} ; \
 		${ECHO_MSG} "=> Checking out CalendarServer from svn.calendarserver.org/..."; \
 		${SVN_CMD1} ${SVN_REPOSITORY_URL}/${SVN_TAG1} > /dev/null ; \
-		${ECHO_MSG} "=> Checking out PyCalendar from svn.calendarserver.org/..."; \
-		cd ${WRKDIR}/${DISTNAME} ; ${SVN_CMD2} ${SVN_REPOSITORY_URL}/${SVN_TAG2} > /dev/null ; \
-		${MV} trunk/src/* . ; \
-		${ECHO_MSG} "=> Checking out twext from svn.calendarserver.org/..."; \
-		cd ${WRKDIR}/${DISTNAME} ; ${SVN_CMD3} ${SVN_REPOSITORY_URL}/${SVN_TAG3} > /dev/null ; \
-		${MV} twext-7.0-dev/twext . ; \
-		${MV} twext-7.0-dev/twisted/plugins/masterchild.py twisted/plugins/ ; \
 		${ECHO_MSG} "=> Creating tar archive ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"; \
 		cd ${WRKDIR} ; tar -czf ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} ${DISTNAME} ; \
 		${RM} -Rf ${WRKDIR}/${DISTNAME} ; \
