@@ -42,17 +42,12 @@ USE_PYTHON=	autoplist distutils
 SUB_FILES=	pkg-message
 SUB_LIST+=	USER=${USERS}
 
-
 USE_RC_SUBR=	caldavd
 SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
 
 SVN_REPOSITORY_URL=	http://svn.calendarserver.org/repository/calendarserver
 SVN_TAG1=	CalendarServer/tags/release/${DISTNAME}
 SVN_CMD1=	svn export -r15178
-SVN_TAG2=	PyCalendar/trunk
-SVN_CMD2=	svn export -r15020
-SVN_TAG3=	twext/branches/release/twext-7.0-dev
-SVN_CMD3=	svn export -r15059
 
 LOGDIR=		/var/log/caldavd
 SHAREDIR=	${PREFIX}/share/caldavd
