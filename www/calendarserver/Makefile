@@ -1,7 +1,7 @@
 # $FreeBSD: head/www/calendarserver/Makefile 400207 2015-10-26 21:03:57Z pi $
 
 PORTNAME=	calendarserver
-PORTVERSION=	8.1
+PORTVERSION=	8.0
 CATEGORIES=	www python
 MASTER_SITES=	LOCAL/wg
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,6 +12,8 @@ COMMENT=	Calendar and Contacts Server from Apple (RFC 4791, RFC 6352)
 
 LICENSE=	APACHE20
 
+FETCH_DEPENDS=	svn:${PORTSDIR}/devel/subversion
+BUILD_DEPENDS=	${FETCH_DEPENDS}
 RUN_DEPENDS=	memcached:${PORTSDIR}/databases/memcached \
 		${PYTHON_PKGNAMEPREFIX}calendar=0.15020:${PORTSDIR}/devel/py-calendar \
 		${PYTHON_PKGNAMEPREFIX}PyGreSQL>=4.1:${PORTSDIR}/databases/py-PyGreSQL \
@@ -23,10 +25,10 @@ RUN_DEPENDS=	memcached:${PORTSDIR}/databases/memcached \
 		${PYTHON_PKGNAMEPREFIX}pytz>=2016.1:${PORTSDIR}/devel/py-pytz \
 		${PYTHON_PKGNAMEPREFIX}service_identity>=14.0.0:${PORTSDIR}/security/py-service_identity \
 		${PYTHON_PKGNAMEPREFIX}setproctitle>=1.1.8:${PORTSDIR}/devel/py-setproctitle \
-        ${PYTHON_PKGNAMEPREFIX}sqlite3>=2.7:${PORTSDIR}/databases/py-sqlite3 \
+		${PYTHON_PKGNAMEPREFIX}sqlite3>=2.7:${PORTSDIR}/databases/py-sqlite3 \
 		${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1:${PORTSDIR}/databases/py-sqlparse \
 		${PYTHON_PKGNAMEPREFIX}twext=0.7.0.dev15059:${PORTSDIR}/devel/py-twext \
-        ${PYTHON_PKGNAMEPREFIX}xattr>=0.6:${PORTSDIR}/devel/py-xattr \
+		${PYTHON_PKGNAMEPREFIX}xattr>=0.6:${PORTSDIR}/devel/py-xattr \
 		${PYTHON_PKGNAMEPREFIX}zope.interface>=4.1.2:${PORTSDIR}/devel/py-zope.interface
 
 OPTIONS_DEFINE=	EXAMPLES DOCS
@@ -34,11 +36,6 @@ EXAMPLES_DESC=	Install configuration examples
 DOCS_DESC=	Install additional documentation
 OPTIONS_DEFAULT=	EXAMPLES DOCS
 .include <bsd.port.options.mk>
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	macosforge
-GH_PROJECT=	ccs-calendarserver
-GH_TAGNAME= 72be299
 
 USES=	pgsql:9.1+ python:2.7 \
 		twisted:run,conch,mail,names,runner,web,words
@@ -50,6 +47,10 @@ SUB_LIST+=	USER=${USERS}
 USE_RC_SUBR=	caldavd
 SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
 
+SVN_REPOSITORY_URL=	http://svn.calendarserver.org/repository/calendarserver
+SVN_TAG1=	CalendarServer/tags/release/${DISTNAME}
+SVN_CMD1=	svn export
+
 LOGDIR=		/var/log/caldavd
 SHAREDIR=	${PREFIX}/share/caldavd
 
@@ -59,8 +60,20 @@ CALDAVD_USER=	caldavd
 USERS=		${CALDAVD_USER}
 GROUPS=		${CALDAVD_USER}
 
+maint-gen-distfile:
+	@if [ ! -f "${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}" ] ; then \
+		${MKDIR} ${WRKDIR} ; cd ${WRKDIR} ; ${RM} -Rf ${WRKDIR}/${DISTNAME} ; \
+		${ECHO_MSG} "=> Checking out CalendarServer from svn.calendarserver.org/..."; \
+		${SVN_CMD1} ${SVN_REPOSITORY_URL}/${SVN_TAG1} > /dev/null ; \
+		${ECHO_MSG} "=> Creating tar archive ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"; \
+		cd ${WRKDIR} ; tar -czf ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} ${DISTNAME} ; \
+		${RM} -Rf ${WRKDIR}/${DISTNAME} ; \
+	else \
+		${ECHO_MSG} "===>	${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} found." ; \
+	fi
+
 post-patch:
-	@${REINPLACE_CMD} -e 's|"{}.a1+unknown".format(base_version)|"8.1"|' ${WRKSRC}/setup.py
+	@${REINPLACE_CMD} -e 's|"{}.a1+unknown".format(base_version)|"8.0"|' ${WRKSRC}/setup.py
 	@${REINPLACE_CMD} -e 's|"/etc/caldavd/caldavd.plist"|"${ETCDIR}/caldavd.plist"|g' ${WRKSRC}/twistedcaldav/stdconfig.py
 
 post-install:
