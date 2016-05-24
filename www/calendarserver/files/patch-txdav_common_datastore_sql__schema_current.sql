@@ -1,6 +1,6 @@
---- txdav/common/datastore/sql_schema/current.sql.orig	2015-08-07 20:12:19 UTC
+--- txdav/common/datastore/sql_schema/current.sql.orig	2016-01-07 15:18:44 UTC
 +++ txdav/common/datastore/sql_schema/current.sql
-@@ -81,7 +81,7 @@ insert into HOME_STATUS values (4, 'disa
+@@ -90,7 +90,7 @@ insert into HOME_STATUS values (4, 'disa
  --------------
  
  create table CALENDAR (
