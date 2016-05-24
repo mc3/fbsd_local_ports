@@ -1,7 +1,7 @@
 # $FreeBSD:$
 
 PORTNAME=	calendar
-PORTVERSION=	0.15020
+PORTVERSION=	0.15423
 PORTREVISION=   1
 DISTNAME=       pycalendar-${PORTVERSION}
 CATEGORIES=	devel python
@@ -22,7 +22,7 @@ NO_ARCH=yes
 
 SVN_REPOSITORY_URL=	http://svn.calendarserver.org/repository/calendarserver
 SVN_TAG2=	PyCalendar/trunk
-SVN_CMD2=	svn export -r15020
+SVN_CMD2=	svn export -r15423
 
 maint-gen-distfile:
 	@if [ ! -f "${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}" ] ; then \
