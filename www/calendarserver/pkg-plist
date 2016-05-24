@@ -48,6 +48,9 @@ man/man8/calendarserver_shell.8.gz
 %%PORTDOCS%%%%DOCSDIR%%/Extensions/calendarserver-bulk-change.xml
 %%PORTDOCS%%%%DOCSDIR%%/Extensions/icalendar-maskuids.txt
 %%PORTDOCS%%%%DOCSDIR%%/Extensions/icalendar-maskuids.xml
+%%PORTDOCS%%%%DOCSDIR%%/Notes/attendee-import.txt
+%%PORTDOCS%%%%DOCSDIR%%/Notes/index.txt
+%%PORTDOCS%%%%DOCSDIR%%/Notes/x-items.txt
 %%PORTDOCS%%%%DOCSDIR%%/RFC/draft-daboo-caldav-extensions.txt
 %%PORTDOCS%%%%DOCSDIR%%/RFC/draft-daboo-calendar-availability.txt
 %%PORTDOCS%%%%DOCSDIR%%/RFC/draft-daboo-carddav-directory-gateway.txt
@@ -100,6 +103,7 @@ man/man8/calendarserver_shell.8.gz
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/resources-test-s2s.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/resources-test.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/caldavd-apple.plist
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/caldavd-stdconfig.plist
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/caldavd-test.plist
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/caldavd-test-podA.plist
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/caldavd-test-podB.plist
