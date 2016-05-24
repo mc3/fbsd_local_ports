@@ -2,7 +2,7 @@
 
 PORTNAME=	calendarserver
 PORTVERSION=	8.0
-PORTREVISION=   3
+PORTREVISION=   4
 CATEGORIES=	www python
 MASTER_SITES=	LOCAL/wg
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +16,7 @@ LICENSE=	APACHE20
 FETCH_DEPENDS=	svn:${PORTSDIR}/devel/subversion
 BUILD_DEPENDS=	${FETCH_DEPENDS}
 RUN_DEPENDS=	memcached:${PORTSDIR}/databases/memcached \
-		${PYTHON_PKGNAMEPREFIX}calendar=0.15423:${PORTSDIR}/devel/py-calendar \
+		${PYTHON_PKGNAMEPREFIX}calendar>=0.15423:${PORTSDIR}/devel/py-calendar \
 		${PYTHON_PKGNAMEPREFIX}PyGreSQL>=4.1:${PORTSDIR}/databases/py-PyGreSQL \
 		${PYTHON_PKGNAMEPREFIX}pycrypto>=2.6.1:${PORTSDIR}/security/py-pycrypto \
 		${PYTHON_PKGNAMEPREFIX}dateutil>=2.1:${PORTSDIR}/devel/py-dateutil \
@@ -28,7 +28,7 @@ RUN_DEPENDS=	memcached:${PORTSDIR}/databases/memcached \
 		${PYTHON_PKGNAMEPREFIX}setproctitle>=1.1.8:${PORTSDIR}/devel/py-setproctitle \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>=2.7:${PORTSDIR}/databases/py-sqlite3 \
 		${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1:${PORTSDIR}/databases/py-sqlparse \
-		${PYTHON_PKGNAMEPREFIX}twext=0.15423:${PORTSDIR}/devel/py-twext \
+		${PYTHON_PKGNAMEPREFIX}twext>=0.15423:${PORTSDIR}/devel/py-twext \
 		${PYTHON_PKGNAMEPREFIX}xattr>=0.6:${PORTSDIR}/devel/py-xattr \
 		${PYTHON_PKGNAMEPREFIX}zope.interface>=4.1.2:${PORTSDIR}/devel/py-zope.interface
 
