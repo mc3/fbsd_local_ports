@@ -1,8 +1,8 @@
 # $FreeBSD:$
 
 PORTNAME=	twext
-PORTVERSION=	0.7.0.dev15059
-DISTNAME=       twext-7.0-dev
+PORTVERSION=	0.15423
+DISTNAME=       twext
 CATEGORIES=	devel python
 MASTER_SITES=	LOCAL/wg
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -32,14 +32,15 @@ USE_PYTHON=	distutils autoplist
 NO_ARCH=yes
 
 SVN_REPOSITORY_URL=	http://svn.calendarserver.org/repository/calendarserver
-SVN_TAG3=	twext/branches/release/twext-7.0-dev
-SVN_CMD3=	svn export -r15059
+SVN_TAG3=	twext/trunk
+SVN_CMD3=	svn export -r15423
 
 maint-gen-distfile:
 	@if [ ! -f "${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}" ] ; then \
 		${MKDIR} ${WRKDIR} ; cd ${WRKDIR} ; ${RM} -Rf ${WRKDIR}/${DISTNAME} ; \
 		${ECHO_MSG} "=> Checking out twext from svn.calendarserver.org/..."; \
 		${SVN_CMD3} ${SVN_REPOSITORY_URL}/${SVN_TAG3} > /dev/null ; \
+		${MV} trunk ${DISTNAME} ; \
 		${ECHO_MSG} "=> Creating tar archive ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"; \
 		cd ${WRKDIR} ; tar -czf ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} ${DISTNAME} ; \
 		${RM} -Rf ${WRKDIR}/${DISTNAME} ; \

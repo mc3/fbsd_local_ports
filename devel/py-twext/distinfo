@@ -1,2 +1,3 @@
-SHA256 (twext-7.0-dev.tar.gz) = eecb4e842e04d9bda463b3863cfcde91b00ad94fb6f13d32a4a454ca16a0a1e2
-SIZE (twext-7.0-dev.tar.gz) = 271934
+TIMESTAMP = 1464093087
+SHA256 (twext.tar.gz) = c5585d6f4bb72aa4acc77a732d9b33c6547f268abc50982f213520c086b0d040
+SIZE (twext.tar.gz) = 266365
