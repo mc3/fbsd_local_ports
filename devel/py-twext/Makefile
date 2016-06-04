@@ -2,7 +2,7 @@
 
 PORTNAME=	twext
 PORTVERSION=	0.15423
-PORTREVISION=   1
+PORTREVISION=   2
 DISTNAME=       twext-${PORTVERSION}
 CATEGORIES=	devel python
 MASTER_SITES=	LOCAL/wg
@@ -14,8 +14,11 @@ COMMENT=	Extensions to Twisted
 LICENSE=	APACHE20
 
 FETCH_DEPENDS=	svn:${PORTSDIR}/devel/subversion
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}twisted>=15.4.0:${PORTSDIR}/devel/py-twisted
 RUN_DEPENDS=  \
- ${PYTHON_PKGNAMEPREFIX}cffi>=0.6:${PORTSDIR}/devel/py-cffi
+ ${PYTHON_PKGNAMEPREFIX}cffi>=0.6:${PORTSDIR}/devel/py-cffi \
+ ${BUILD_DEPENDS}
+
 DAL_RUN_DEPENDS= \
  ${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1.11:${PORTSDIR}/databases/py-sqlparse
 Postgres_RUN_DEPENDS= \
@@ -28,7 +31,7 @@ OPTIONS_DEFAULT=	DAL POSTGRES
 .include <bsd.port.options.mk>
 
 
-USES=		python:2.7 twisted:build,run
+USES=		python:2.7
 USE_PYTHON=	distutils autoplist
 NO_ARCH=yes
 
