@@ -2,7 +2,7 @@
 
 PORTNAME=	calendarserver
 PORTVERSION=	8.0
-PORTREVISION=   5
+PORTREVISION=   6
 CATEGORIES=	www python
 MASTER_SITES=	LOCAL/wg
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -29,6 +29,7 @@ RUN_DEPENDS=	memcached:${PORTSDIR}/databases/memcached \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>=2.7:${PORTSDIR}/databases/py-sqlite3 \
 		${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1:${PORTSDIR}/databases/py-sqlparse \
 		${PYTHON_PKGNAMEPREFIX}twext>=0.15423:${PORTSDIR}/devel/py-twext \
+		${PYTHON_PKGNAMEPREFIX}twisted>=15.4.0:${PORTSDIR}/devel/py-twisted \
 		${PYTHON_PKGNAMEPREFIX}xattr>=0.6:${PORTSDIR}/devel/py-xattr \
 		${PYTHON_PKGNAMEPREFIX}zope.interface>=4.1.2:${PORTSDIR}/devel/py-zope.interface
 
@@ -38,8 +39,7 @@ DOCS_DESC=	Install additional documentation
 OPTIONS_DEFAULT=	EXAMPLES DOCS
 .include <bsd.port.options.mk>
 
-USES=	pgsql:9.1+ python:2.7 \
-		twisted:run,conch,mail,names,runner,web,words
+USES=	pgsql:9.1+ python:2.7
 USE_PYTHON=	autoplist distutils
 
 SUB_FILES=	pkg-message
