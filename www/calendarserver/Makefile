@@ -2,7 +2,7 @@
 
 PORTNAME=	calendarserver
 PORTVERSION=	8.0
-PORTREVISION=   6
+PORTREVISION=   7
 CATEGORIES=	www python
 MASTER_SITES=	LOCAL/wg
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -36,7 +36,6 @@ RUN_DEPENDS=	memcached:${PORTSDIR}/databases/memcached \
 OPTIONS_DEFINE=	EXAMPLES DOCS
 EXAMPLES_DESC=	Install configuration examples
 DOCS_DESC=	Install additional documentation
-OPTIONS_DEFAULT=	EXAMPLES DOCS
 .include <bsd.port.options.mk>
 
 USES=	pgsql:9.1+ python:2.7
