@@ -2,7 +2,7 @@
 
 PORTNAME=	calendarserver
 PORTVERSION=	8.0
-PORTREVISION=   8
+PORTREVISION=   9
 CATEGORIES=	www python
 MASTER_SITES=	LOCAL/wg
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -19,19 +19,19 @@ RUN_DEPENDS=	memcached:${PORTSDIR}/databases/memcached \
 		${PYTHON_PKGNAMEPREFIX}calendar>=0.15423:${PORTSDIR}/devel/py-calendar \
 		${PYTHON_PKGNAMEPREFIX}PyGreSQL>=4.1:${PORTSDIR}/databases/py-PyGreSQL \
 		${PYTHON_PKGNAMEPREFIX}pycrypto>=2.6.1:${PORTSDIR}/security/py-pycrypto \
-		${PYTHON_PKGNAMEPREFIX}dateutil>=2.1:${PORTSDIR}/devel/py-dateutil \
+		${PYTHON_PKGNAMEPREFIX}dateutil>=2.4.2:${PORTSDIR}/devel/py-dateutil \
 		${PYTHON_PKGNAMEPREFIX}openssl>=0.14:${PORTSDIR}/security/py-openssl \
 		${PYTHON_PKGNAMEPREFIX}pg8000>=1.10.2:${PORTSDIR}/databases/py-pg8000 \
-		${PYTHON_PKGNAMEPREFIX}psutil121>=1.2:${PORTSDIR}/sysutils/py-psutil121 \
+		${PYTHON_PKGNAMEPREFIX}psutil>=3.4.2:${PORTSDIR}/sysutils/py-psutil \
 		${PYTHON_PKGNAMEPREFIX}pytz>=2016.1:${PORTSDIR}/devel/py-pytz \
 		${PYTHON_PKGNAMEPREFIX}service_identity>=14.0.0:${PORTSDIR}/security/py-service_identity \
-		${PYTHON_PKGNAMEPREFIX}setproctitle>=1.1.8:${PORTSDIR}/devel/py-setproctitle \
+		${PYTHON_PKGNAMEPREFIX}setproctitle>=1.1.9:${PORTSDIR}/devel/py-setproctitle \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>=2.7:${PORTSDIR}/databases/py-sqlite3 \
 		${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1:${PORTSDIR}/databases/py-sqlparse \
 		${PYTHON_PKGNAMEPREFIX}twext>=0.15423:${PORTSDIR}/devel/py-twext \
 		${PYTHON_PKGNAMEPREFIX}twisted>=15.4.0:${PORTSDIR}/devel/py-twisted \
-		${PYTHON_PKGNAMEPREFIX}xattr>=0.6:${PORTSDIR}/devel/py-xattr \
-		${PYTHON_PKGNAMEPREFIX}zope.interface>=4.1.2:${PORTSDIR}/devel/py-zope.interface
+		${PYTHON_PKGNAMEPREFIX}xattr>=0.7.5:${PORTSDIR}/devel/py-xattr \
+		${PYTHON_PKGNAMEPREFIX}zope.interface>=4.1.3:${PORTSDIR}/devel/py-zope.interface
 
 OPTIONS_DEFINE=	EXAMPLES DOCS
 EXAMPLES_DESC=	Install configuration examples
