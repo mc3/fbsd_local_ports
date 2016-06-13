@@ -1,20 +1,19 @@
-# $FreeBSD:$
+# $FreeBSD$
 
-PORTNAME=	calendar
+PORTNAME=		calendar
 PORTVERSION=	0.15423
-PORTREVISION=   1
-DISTNAME=       pycalendar-${PORTVERSION}
-CATEGORIES=	devel python
+PORTREVISION=	2
+CATEGORIES=		devel python
 MASTER_SITES=	LOCAL/wg
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=		pycalendar-${PORTVERSION}
 
-MAINTAINER=	axel.rau@chaos1.de
-COMMENT=	iCalendar/vCard Library
+MAINTAINER=		axel.rau@chaos1.de
+COMMENT=		Library for iCalendar/vCard data
 
-LICENSE=	APACHE20
+LICENSE=		APACHE20
 
-FETCH_DEPENDS=	svn:${PORTSDIR}/devel/subversion
-
+FETCH_DEPENDS=	svn:devel/subversion
 
 USES=		python:2.7
 USE_PYTHON=	distutils autoplist

@@ -2,7 +2,7 @@
 
 PORTNAME=	calendarserver
 PORTVERSION=	8.0
-PORTREVISION=   9
+PORTREVISION=   10
 CATEGORIES=	www python
 MASTER_SITES=	LOCAL/wg
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,30 +13,25 @@ COMMENT=	Calendar and Contacts Server from Apple (RFC 4791, RFC 6352)
 
 LICENSE=	APACHE20
 
-FETCH_DEPENDS=	svn:${PORTSDIR}/devel/subversion
+FETCH_DEPENDS=	svn:devel/subversion
 BUILD_DEPENDS=	${FETCH_DEPENDS}
-RUN_DEPENDS=	memcached:${PORTSDIR}/databases/memcached \
-		${PYTHON_PKGNAMEPREFIX}calendar>=0.15423:${PORTSDIR}/devel/py-calendar \
-		${PYTHON_PKGNAMEPREFIX}PyGreSQL>=4.1:${PORTSDIR}/databases/py-PyGreSQL \
-		${PYTHON_PKGNAMEPREFIX}pycrypto>=2.6.1:${PORTSDIR}/security/py-pycrypto \
-		${PYTHON_PKGNAMEPREFIX}dateutil>=2.4.2:${PORTSDIR}/devel/py-dateutil \
-		${PYTHON_PKGNAMEPREFIX}openssl>=0.14:${PORTSDIR}/security/py-openssl \
-		${PYTHON_PKGNAMEPREFIX}pg8000>=1.10.2:${PORTSDIR}/databases/py-pg8000 \
-		${PYTHON_PKGNAMEPREFIX}psutil>=3.4.2:${PORTSDIR}/sysutils/py-psutil \
-		${PYTHON_PKGNAMEPREFIX}pytz>=2016.1:${PORTSDIR}/devel/py-pytz \
-		${PYTHON_PKGNAMEPREFIX}service_identity>=14.0.0:${PORTSDIR}/security/py-service_identity \
-		${PYTHON_PKGNAMEPREFIX}setproctitle>=1.1.9:${PORTSDIR}/devel/py-setproctitle \
-		${PYTHON_PKGNAMEPREFIX}sqlite3>=2.7:${PORTSDIR}/databases/py-sqlite3 \
-		${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1:${PORTSDIR}/databases/py-sqlparse \
-		${PYTHON_PKGNAMEPREFIX}twext>=0.15423:${PORTSDIR}/devel/py-twext \
-		${PYTHON_PKGNAMEPREFIX}twisted>=15.4.0:${PORTSDIR}/devel/py-twisted \
-		${PYTHON_PKGNAMEPREFIX}xattr>=0.7.5:${PORTSDIR}/devel/py-xattr \
-		${PYTHON_PKGNAMEPREFIX}zope.interface>=4.1.3:${PORTSDIR}/devel/py-zope.interface
-
-OPTIONS_DEFINE=	EXAMPLES DOCS
-EXAMPLES_DESC=	Install configuration examples
-DOCS_DESC=	Install additional documentation
-.include <bsd.port.options.mk>
+RUN_DEPENDS=	memcached:databases/memcached \
+		${PYTHON_PKGNAMEPREFIX}calendar>=0.15423:devel/py-calendar \
+		${PYTHON_PKGNAMEPREFIX}PyGreSQL>=4.1:databases/py-PyGreSQL \
+		${PYTHON_PKGNAMEPREFIX}pycrypto>=2.6.1:security/py-pycrypto \
+		${PYTHON_PKGNAMEPREFIX}dateutil>=2.4.2:devel/py-dateutil \
+		${PYTHON_PKGNAMEPREFIX}openssl>=0.14:security/py-openssl \
+		${PYTHON_PKGNAMEPREFIX}pg8000>=1.10.2:databases/py-pg8000 \
+		${PYTHON_PKGNAMEPREFIX}psutil>=3.4.2:sysutils/py-psutil \
+		${PYTHON_PKGNAMEPREFIX}pytz>=2016.1:devel/py-pytz \
+		${PYTHON_PKGNAMEPREFIX}service_identity>=14.0.0:security/py-service_identity \
+		${PYTHON_PKGNAMEPREFIX}setproctitle>=1.1.9:devel/py-setproctitle \
+		${PYTHON_PKGNAMEPREFIX}sqlite3>=2.7:databases/py-sqlite3 \
+		${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1:databases/py-sqlparse \
+		${PYTHON_PKGNAMEPREFIX}twext>=0.15423:devel/py-twext \
+		${PYTHON_PKGNAMEPREFIX}twisted>=15.4.0:devel/py-twisted \
+		${PYTHON_PKGNAMEPREFIX}xattr>=0.7.5:devel/py-xattr \
+		${PYTHON_PKGNAMEPREFIX}zope.interface>=4.1.3:devel/py-zope.interface
 
 USES=	pgsql:9.1+ python:2.7
 USE_PYTHON=	autoplist distutils

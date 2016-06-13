@@ -1,10 +1,9 @@
-# $FreeBSD:$
+# $FreeBSD$
 
-PORTNAME=	twext
+PORTNAME=		twext
 PORTVERSION=	0.15423
-PORTREVISION=   2
-DISTNAME=       twext-${PORTVERSION}
-CATEGORIES=	devel python
+PORTREVISION=	2
+CATEGORIES=		devel python
 MASTER_SITES=	LOCAL/wg
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -13,23 +12,22 @@ COMMENT=	Extensions to Twisted
 
 LICENSE=	APACHE20
 
-FETCH_DEPENDS=	svn:${PORTSDIR}/devel/subversion
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}twisted>=15.4.0:${PORTSDIR}/devel/py-twisted
-RUN_DEPENDS=  \
- ${PYTHON_PKGNAMEPREFIX}cffi>=0.6:${PORTSDIR}/devel/py-cffi \
- ${BUILD_DEPENDS}
+FETCH_DEPENDS=	svn:devel/subversion
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}twisted>=15.4.0:devel/py-twisted
+RUN_DEPENDS=	\
+ ${PYTHON_PKGNAMEPREFIX}cffi>=0.6:devel/py-cffi \
+ ${PYTHON_PKGNAMEPREFIX}twisted>=15.4.0:devel/py-twisted
 
-DAL_RUN_DEPENDS= \
- ${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1.11:${PORTSDIR}/databases/py-sqlparse
-Postgres_RUN_DEPENDS= \
- ${PYTHON_PKGNAMEPREFIX}pg8000>=1.10.2:${PORTSDIR}/databases/py-pg8000
+DAL_RUN_DEPENDS=	\
+ ${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1.11:databases/py-sqlparse
+POSTGRES_RUN_DEPENDS=	\
+ ${PYTHON_PKGNAMEPREFIX}pg8000>=1.10.2:databases/py-pg8000
 
 OPTIONS_DEFINE=	DAL POSTGRES
 DAL_DESC=	Enables use of the Database Abstraction Layer.
-DAL_POSTGRES=	Enables support for Postgres database connectivity.
+POSTGRES=	Enables support for Postgres database connectivity.
 OPTIONS_DEFAULT=	DAL POSTGRES
 .include <bsd.port.options.mk>
-
 
 USES=		python:2.7
 USE_PYTHON=	distutils autoplist
