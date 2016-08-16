@@ -45,10 +45,16 @@ SVN_REPOSITORY_URL=	http://svn.calendarserver.org/repository/calendarserver
 SVN_TAG1=	CalendarServer/tags/release/${DISTNAME}
 SVN_CMD1=	svn export
 
-LOGDIR=		/var/log/caldavd
-SHAREDIR=	${PREFIX}/share/caldavd
-
 ETCDIR=		${PREFIX}/etc/caldavd
+SHAREDIR=	${PREFIX}/share/caldavd
+DBDIR=		/var/db/caldavd
+LOGDIR=		/var/log/caldavd
+RUNDIR=		/var/run/caldavd
+PLIST_SUB=	USER=${USERS} GROUP=${GROUPS} \
+		ETCDIR=${ETCDIR} \
+		DBDIR=${DBDIR} \
+		LOGDIR=${LOGDIR} \
+		RUNDIR=${RUNDIR}
 
 CALDAVD_USER=	caldavd
 USERS=		${CALDAVD_USER}
@@ -71,7 +77,9 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|"/etc/caldavd/caldavd.plist"|"${ETCDIR}/caldavd.plist"|g' ${WRKSRC}/twistedcaldav/stdconfig.py
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${ETCDIR}/auth
+	${MKDIR} ${STAGEDIR}${DBDIR}/Data/Documents
+	${MKDIR} ${STAGEDIR}${DBDIR}/Documents
+	${MKDIR} ${STAGEDIR}${ETCDIR}/auth
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	(cd ${WRKSRC}/conf && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
 	(cd ${WRKSRC}/doc && \
@@ -83,5 +91,7 @@ post-install:
 	${CP} -p ${WRKSRC}/txdav/common/datastore/sql_schema/current.sql \
 		${STAGEDIR}${DOCSDIR}
 	${INSTALL_MAN} ${WRKSRC}/doc/*.8 ${STAGEDIR}${PREFIX}/man/man8
+	${MKDIR} ${STAGEDIR}${LOGDIR}
+	${MKDIR} ${STAGEDIR}${RUNDIR}
 
 .include <bsd.port.mk>
