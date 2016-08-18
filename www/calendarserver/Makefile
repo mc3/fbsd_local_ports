@@ -2,7 +2,8 @@
 
 PORTNAME=	calendarserver
 PORTVERSION=	8.0
-PORTREVISION=   78CATEGORIES=	www python
+PORTREVISION=	8
+CATEGORIES=	www python
 MASTER_SITES=	http://www.lechner-rau.de/downloads/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	CalendarServer-${PORTVERSION}
