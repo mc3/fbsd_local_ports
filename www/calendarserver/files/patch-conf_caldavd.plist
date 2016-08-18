@@ -1,0 +1,16 @@
+--- conf/caldavd.plist.orig	2016-01-07 15:18:44 UTC
++++ conf/caldavd.plist
+@@ -107,11 +107,11 @@
+ 
+     <!-- Configuration root -->
+     <key>ConfigRoot</key>
+-    <string>/etc/caldavd</string>
++    <string>%%PREFIX%%/etc/caldavd</string>
+ 
+     <!-- Run root -->
+     <key>RunRoot</key>
+-    <string>/var/run</string>
++    <string>/var/run/caldavd</string>
+ 
+     <!-- Child aliases -->
+     <key>Aliases</key>
