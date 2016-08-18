@@ -1,9 +1,8 @@
 # $FreeBSD: head/devel/py-twext/Makefile 417528 2016-06-26 15:06:43Z pi $
 
 PORTNAME=	twext
-PORTVERSION=	0.15423
+PORTVERSION=	0.20160817
 CATEGORIES=	devel python
-MASTER_SITES=	http://www.lechner-rau.de/downloads/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	axel.rau@chaos1.de
@@ -11,7 +10,6 @@ COMMENT=	Extensions to Twisted
 
 LICENSE=	APACHE20
 
-FETCH_DEPENDS=	svn:devel/subversion
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}twisted>=15.4.0:devel/py-twisted
 RUN_DEPENDS=	\
  ${PYTHON_PKGNAMEPREFIX}cffi>=0.6:devel/py-cffi \
@@ -30,23 +28,12 @@ OPTIONS_DEFAULT=	DAL POSTGRES
 
 USES=		python:2.7
 USE_PYTHON=	distutils autoplist
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	apple
+GH_PROJECT=	ccs-twistedextensions
+GH_TAGNAME=	38a2adb
+
 NO_ARCH=yes
-
-SVN_REPOSITORY_URL=	http://svn.calendarserver.org/repository/calendarserver
-SVN_TAG3=	twext/trunk
-SVN_CMD3=	svn export -r15423
-
-maint-gen-distfile:
-	@if [ ! -f "${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}" ] ; then \
-		${MKDIR} ${WRKDIR} ; cd ${WRKDIR} ; ${RM} -Rf ${WRKDIR}/${DISTNAME} ; \
-		${ECHO_MSG} "=> Checking out twext from svn.calendarserver.org/..."; \
-		${SVN_CMD3} ${SVN_REPOSITORY_URL}/${SVN_TAG3} > /dev/null ; \
-		${MV} trunk ${DISTNAME} ; \
-		${ECHO_MSG} "=> Creating tar archive ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"; \
-		cd ${WRKDIR} ; tar -czf ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} ${DISTNAME} ; \
-		${RM} -Rf ${WRKDIR}/${DISTNAME} ; \
-	else \
-		${ECHO_MSG} "===>	${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} found." ; \
-	fi
 
 .include <bsd.port.mk>
