@@ -2,7 +2,7 @@
 
 PORTNAME=	calendarserver
 PORTVERSION=	8.0
-PORTREVISION=   6
+PORTREVISION=   7
 CATEGORIES=	www python
 MASTER_SITES=	http://www.lechner-rau.de/downloads/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -77,6 +77,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|"{}.a1+unknown".format(base_version)|"8.0"|' ${WRKSRC}/setup.py
 	@${REINPLACE_CMD} -e 's|"/etc/caldavd/caldavd.plist"|"${ETCDIR}/caldavd.plist"|g' ${WRKSRC}/twistedcaldav/stdconfig.py
 	@${REINPLACE_CMD} -e 's|"/etc/caldavd"|"${ETCDIR}"|g' ${WRKSRC}/conf/caldavd.plist
+	@${REINPLACE_CMD} -e 's|"/var/run"|"/var/run/caldavd"|g' ${WRKSRC}/conf/caldavd.plist
 
 post-install:
 	${MKDIR} ${STAGEDIR}${DBDIR}/Data/Documents
