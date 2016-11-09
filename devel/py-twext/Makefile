@@ -13,7 +13,7 @@ LICENSE=	APACHE20
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}twisted>=15.4.0:devel/py-twisted
 RUN_DEPENDS=	\
  ${PYTHON_PKGNAMEPREFIX}cffi>=0.6:devel/py-cffi \
- ${PYTHON_PKGNAMEPREFIX}twisted>=15.4.0:devel/py-twisted
+ ${PYTHON_PKGNAMEPREFIX}twisted>=16.3:devel/py-twisted
 
 DAL_RUN_DEPENDS=	\
  ${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1.11:databases/py-sqlparse
