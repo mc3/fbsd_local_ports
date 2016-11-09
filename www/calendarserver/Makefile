@@ -6,6 +6,7 @@ CATEGORIES=	    www python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=       CalendarServer-${PORTVERSION}
 MASTER_SITES=   https://github.com/apple/ccs-calendarserver/archive/
+WRKSRC=         ${WRKDIR}/ccs-calendarserver-CalendarServer-9.0
 MAINTAINER=	axel.rau@chaos1.de
 COMMENT=	Calendar and Contacts Server from Apple (RFC 4791, RFC 6352)
 
@@ -32,11 +33,6 @@ RUN_DEPENDS=	memcached:databases/memcached \
 USES=	pgsql:9.1+ python:2.7
 USE_PYTHON=	autoplist distutils
 NO_ARCH=yes
-
-##USE_GITHUB=	yes
-##GH_ACCOUNT=	apple
-##GH_PROJECT=	ccs-calendarserver/archive
-##GH_TAGNAME=	9d1d9bd
 
 # https://github.com/apple/ccs-calendarserver/archive/CalendarServer-9.0.tar.gz
 
