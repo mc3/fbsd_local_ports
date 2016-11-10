@@ -69,12 +69,14 @@ post-install:
 	${MKDIR} ${STAGEDIR}${ETCDIR}/auth
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	(cd ${WRKSRC}/conf && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
-	(cd ${WRKSRC}/doc && \
-		for i in `ls |${GREP} -v '.8'`; do \
-		${MKDIR} ${STAGEDIR}${DOCSDIR}/$${i} && \
-		${INSTALL_MAN} ${WRKSRC}/doc/$${i}/* \
-		${STAGEDIR}${DOCSDIR}/$${i}; \
-		done)
+	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
+	(cd ${STAGEDIR}${DOCSDIR} && rm *.8)
+	##(cd ${WRKSRC}/doc && \
+	##	for i in `ls |${GREP} -v '.8'`; do \
+	##	${MKDIR} ${STAGEDIR}${DOCSDIR}/$${i} && \
+	##	${INSTALL_MAN} ${WRKSRC}/doc/$${i}/* \
+	##	${STAGEDIR}${DOCSDIR}/$${i}; \
+	##	done)
 	${CP} -p ${WRKSRC}/txdav/common/datastore/sql_schema/current.sql \
 		${STAGEDIR}${DOCSDIR}
 	${INSTALL_MAN} ${WRKSRC}/doc/*.8 ${STAGEDIR}${PREFIX}/man/man8
