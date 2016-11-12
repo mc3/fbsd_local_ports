@@ -35,4 +35,7 @@ GH_ACCOUNT=	apple
 GH_PROJECT=	ccs-twistedextensions
 GH_TAGNAME=	9d1d9bd
 
+post-patch:
+	@${REINPLACE_CMD} -e 's|"{}a1+unknown".format(base_version)|"0.20160928"|' ${WRKSRC}/setup.py
+
 .include <bsd.port.mk>

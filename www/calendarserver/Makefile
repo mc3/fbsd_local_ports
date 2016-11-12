@@ -1,12 +1,12 @@
-# $FreeBSD: head/www/calendarserver/Makefile 424411 2016-10-21 12:51:40Z mat $
+# $FreeBSD$
 
 PORTNAME=	calendarserver
 PORTVERSION=	9.0
 CATEGORIES=	    www python
+MASTER_SITES=	https://github.com/apple/ccs-calendarserver/archive/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=       CalendarServer-${PORTVERSION}
-MASTER_SITES=   https://github.com/apple/ccs-calendarserver/archive/
-WRKSRC=         ${WRKDIR}/ccs-calendarserver-CalendarServer-9.0
+DISTNAME=		CalendarServer-${PORTVERSION}
+
 MAINTAINER=	axel.rau@chaos1.de
 COMMENT=	Calendar and Contacts Server from Apple (RFC 4791, RFC 6352)
 
@@ -34,8 +34,6 @@ USES=	pgsql:9.1+ python:2.7
 USE_PYTHON=	autoplist distutils
 NO_ARCH=yes
 
-# https://github.com/apple/ccs-calendarserver/archive/CalendarServer-9.0.tar.gz
-
 SUB_FILES=	pkg-message
 SUB_LIST+=	USER=${USERS}
 
@@ -52,13 +50,14 @@ PLIST_SUB=	USER=${USERS} GROUP=${GROUPS} \
 		DBDIR=${DBDIR} \
 		LOGDIR=${LOGDIR} \
 		RUNDIR=${RUNDIR}
+WRKSRC=		${WRKDIR}/ccs-calendarserver-CalendarServer-9.0
 
 CALDAVD_USER=	caldavd
-USERS=		${CALDAVD_USER}
-GROUPS=		${CALDAVD_USER}
+USERS=			${CALDAVD_USER}
+GROUPS=			${CALDAVD_USER}
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|"{}.a1+unknown".format(base_version)|"8.0"|' ${WRKSRC}/setup.py
+	@${REINPLACE_CMD} -e 's|"{}a1+unknown".format(base_version)|"9.0"|' ${WRKSRC}/setup.py
 	@${REINPLACE_CMD} -e 's|"/etc/caldavd/caldavd.plist"|"${ETCDIR}/caldavd.plist"|g' ${WRKSRC}/twistedcaldav/stdconfig.py
 	@${REINPLACE_CMD} -e 's|/etc/caldavd|${ETCDIR}|g' ${WRKSRC}/conf/caldavd.plist
 	@${REINPLACE_CMD} -e 's|/var/run|/var/run/caldavd|g' ${WRKSRC}/conf/caldavd.plist
@@ -70,7 +69,7 @@ post-install:
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	(cd ${WRKSRC}/conf && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
 	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
-	(cd ${STAGEDIR}${DOCSDIR} && rm *.8)
+	(cd ${STAGEDIR}${DOCSDIR} && ${RM} *.8)
 	##(cd ${WRKSRC}/doc && \
 	##	for i in `ls |${GREP} -v '.8'`; do \
 	##	${MKDIR} ${STAGEDIR}${DOCSDIR}/$${i} && \

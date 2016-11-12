@@ -11,7 +11,9 @@ man/man8/calendarserver_purge_attachments.8.gz
 man/man8/calendarserver_purge_events.8.gz
 man/man8/calendarserver_purge_principals.8.gz
 man/man8/calendarserver_shell.8.gz
+%%PORTDOCS%%%%DOCSDIR%%/Admin/Dashboard.md
 %%PORTDOCS%%%%DOCSDIR%%/Admin/DirectoryService-Apache.rst
+%%PORTDOCS%%%%DOCSDIR%%/Admin/DirectoryService-LDAP.rst
 %%PORTDOCS%%%%DOCSDIR%%/Admin/DirectoryService-OpenDirectory.rst
 %%PORTDOCS%%%%DOCSDIR%%/Admin/DirectoryService-XML.rst
 %%PORTDOCS%%%%DOCSDIR%%/Admin/DirectoryServices.rst
@@ -20,6 +22,7 @@ man/man8/calendarserver_shell.8.gz
 %%PORTDOCS%%%%DOCSDIR%%/Admin/LoadSimulation.rst
 %%PORTDOCS%%%%DOCSDIR%%/Admin/MultiServerDeployment.rst
 %%PORTDOCS%%%%DOCSDIR%%/Admin/iSchedule.txt
+%%PORTDOCS%%%%DOCSDIR%%/Admin/image/dashboard.png
 %%PORTDOCS%%%%DOCSDIR%%/Client-Server/Principal Bootstrap.graffle.zip
 %%PORTDOCS%%%%DOCSDIR%%/Client-Server/Principal Bootstrap.pdf
 %%PORTDOCS%%%%DOCSDIR%%/Client-Server/calendar-client.rst
@@ -51,6 +54,16 @@ man/man8/calendarserver_shell.8.gz
 %%PORTDOCS%%%%DOCSDIR%%/Notes/attendee-import.txt
 %%PORTDOCS%%%%DOCSDIR%%/Notes/index.txt
 %%PORTDOCS%%%%DOCSDIR%%/Notes/x-items.txt
+%%PORTDOCS%%%%DOCSDIR%%/OracleVM/ReadMe.md
+%%PORTDOCS%%%%DOCSDIR%%/OracleVM/oracle-on-mac.py
+%%PORTDOCS%%%%DOCSDIR%%/OracleVM/rebuild.sql
+%%PORTDOCS%%%%DOCSDIR%%/RFC/RFC6764-srv-CalDAV.txt
+%%PORTDOCS%%%%DOCSDIR%%/RFC/RFC6868-Parameter Value Encoding.txt
+%%PORTDOCS%%%%DOCSDIR%%/RFC/RFC7095-jCard.txt
+%%PORTDOCS%%%%DOCSDIR%%/RFC/RFC7265-jcal.txt
+%%PORTDOCS%%%%DOCSDIR%%/RFC/RFC7529-RSCALE.txt
+%%PORTDOCS%%%%DOCSDIR%%/RFC/RFC7808-Timezone Data Distribution Service.txt
+%%PORTDOCS%%%%DOCSDIR%%/RFC/RFC7809-Timezones by Reference.txt
 %%PORTDOCS%%%%DOCSDIR%%/RFC/draft-daboo-caldav-extensions.txt
 %%PORTDOCS%%%%DOCSDIR%%/RFC/draft-daboo-calendar-availability.txt
 %%PORTDOCS%%%%DOCSDIR%%/RFC/draft-daboo-carddav-directory-gateway.txt
@@ -78,11 +91,6 @@ man/man8/calendarserver_shell.8.gz
 %%PORTDOCS%%%%DOCSDIR%%/RFC/rfc6352-CardDAV.txt
 %%PORTDOCS%%%%DOCSDIR%%/RFC/rfc6578-WebDAV Sync.txt
 %%PORTDOCS%%%%DOCSDIR%%/RFC/rfc6638-CalDAV-Scheduling.txt
-%%PORTDOCS%%%%DOCSDIR%%/RFC/RFC6764-srv-CalDAV.txt
-%%PORTDOCS%%%%DOCSDIR%%/RFC/RFC6868-Parameter Value Encoding.txt
-%%PORTDOCS%%%%DOCSDIR%%/RFC/RFC7095-jCard.txt
-%%PORTDOCS%%%%DOCSDIR%%/RFC/RFC7265-jcal.txt
-%%PORTDOCS%%%%DOCSDIR%%/RFC/RFC7529-RSCALE.txt
 %%PORTDOCS%%%%DOCSDIR%%/current.sql
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/accounts-test-pod.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/accounts-test-s2s.xml
@@ -90,25 +98,26 @@ man/man8/calendarserver_shell.8.gz
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/accounts.dtd
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/accounts.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/augments-default.xml
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/augments-test.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/augments-test-pod.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/augments-test-s2s.xml
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/augments-test.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/augments.dtd
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/generate_test_accounts.py
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/proxies.dtd
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/proxies-test-pod.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/proxies-test-s2s.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/proxies-test.xml
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/proxies.dtd
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/resources-test-pod.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/resources-test-s2s.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/auth/resources-test.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/caldavd-apple.plist
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/caldavd-stdconfig.plist
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/caldavd-test.plist
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/caldavd-test-podA.plist
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/caldavd-test-podB.plist
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/caldavd-test-s2s.plist
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/caldavd-test.plist
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/caldavd.plist
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/caldavd.plist.bak
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/dkim-test-s2s/other_keys/example.com#ischedule
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/dkim-test-s2s/priv.pem
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/dkim-test-s2s/pub.pem
@@ -119,8 +128,8 @@ man/man8/calendarserver_shell.8.gz
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/localservers.dtd
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/localservers.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/mime.types
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/remoteservers-test.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/remoteservers-test-s2s.xml
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/remoteservers-test.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/remoteservers.dtd
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/remoteservers.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/resources.xml
@@ -128,12 +137,12 @@ man/man8/calendarserver_shell.8.gz
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/resources/locations-resources-orig.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/resources/locations-resources.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/resources/users-groups.xml
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/test/accounts.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/test-db.zones
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/test/accounts.xml
 @dir %%ETCDIR%%/auth
-@dir(%%USER%%,%%GROUP%%,755) %%RUNDIR%%
 @dir %%LOGDIR%%
 @dir(%%USER%%,%%GROUP%%,755) %%DBDIR%%
-@dir(%%USER%%,%%GROUP%%,755) %%DBDIR%%/Documents
 @dir(%%USER%%,%%GROUP%%,755) %%DBDIR%%/Data
 @dir(%%USER%%,%%GROUP%%,755) %%DBDIR%%/Data/Documents
+@dir(%%USER%%,%%GROUP%%,755) %%DBDIR%%/Documents
+@dir(%%USER%%,%%GROUP%%,755) %%RUNDIR%%
