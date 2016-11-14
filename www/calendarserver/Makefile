@@ -12,6 +12,10 @@ COMMENT=	Calendar and Contacts Server from Apple (RFC 4791, RFC 6352)
 
 LICENSE=	APACHE20
 
+PORTDOCS=	*
+PORTEXAMPLES=	*
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
 RUN_DEPENDS=	memcached:databases/memcached \
 		${PYTHON_PKGNAMEPREFIX}calendar>=2.1:devel/py-calendar \
 		${PYTHON_PKGNAMEPREFIX}PyGreSQL>=5.0:databases/py-PyGreSQL \
