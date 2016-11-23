@@ -2,6 +2,7 @@
 
 PORTNAME=	calendarserver
 PORTVERSION=	9.0
+PORTREVISION=	1
 CATEGORIES=	    www python
 MASTER_SITES=	https://github.com/apple/ccs-calendarserver/archive/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -28,7 +29,6 @@ RUN_DEPENDS=	memcached:databases/memcached \
 		${PYTHON_PKGNAMEPREFIX}service_identity>=16.0.0:security/py-service_identity \
 		${PYTHON_PKGNAMEPREFIX}setproctitle>=1.1.10:devel/py-setproctitle \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>=2.7:databases/py-sqlite3 \
-		${PYTHON_PKGNAMEPREFIX}sqlparse>=0.2.0:databases/py-sqlparse \
 		${PYTHON_PKGNAMEPREFIX}twext>=0.20160817:devel/py-twext \
 		${PYTHON_PKGNAMEPREFIX}twisted>=16.4.1:devel/py-twisted \
 		${PYTHON_PKGNAMEPREFIX}xattr>=0.7.8:devel/py-xattr \

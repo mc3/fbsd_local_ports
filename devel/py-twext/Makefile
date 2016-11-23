@@ -2,6 +2,7 @@
 
 PORTNAME=	twext
 PORTVERSION=	0.20160818
+PORTREVISION=	1
 CATEGORIES=	devel python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -16,7 +17,8 @@ RUN_DEPENDS=	\
  ${PYTHON_PKGNAMEPREFIX}twisted>=15.4:devel/py-twisted
 
 DAL_RUN_DEPENDS=	\
- ${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1.11:databases/py-sqlparse
+ ${PYTHON_PKGNAMEPREFIX}sqlparse01>=0.1.19:databases/py-sqlparse01 \
+
 POSTGRES_RUN_DEPENDS=	\
  ${PYTHON_PKGNAMEPREFIX}pg8000>=1.10.2:databases/py-pg8000
 
