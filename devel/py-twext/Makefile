@@ -1,7 +1,7 @@
 # $FreeBSD: head/devel/py-twext/Makefile 424411 2016-10-21 12:51:40Z mat $
 
 PORTNAME=	twext
-PORTVERSION=	0.20160928
+PORTVERSION=	0.20160818
 CATEGORIES=	devel python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -13,7 +13,7 @@ LICENSE=	APACHE20
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}twisted>=15.4.0:devel/py-twisted
 RUN_DEPENDS=	\
  ${PYTHON_PKGNAMEPREFIX}cffi>=0.6:devel/py-cffi \
- ${PYTHON_PKGNAMEPREFIX}twisted>=16.3:devel/py-twisted
+ ${PYTHON_PKGNAMEPREFIX}twisted>=15.4:devel/py-twisted
 
 DAL_RUN_DEPENDS=	\
  ${PYTHON_PKGNAMEPREFIX}sqlparse>=0.1.11:databases/py-sqlparse
@@ -33,7 +33,7 @@ NO_ARCH=yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	apple
 GH_PROJECT=	ccs-twistedextensions
-GH_TAGNAME=	9d1d9bd
+GH_TAGNAME=	a8528bc
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|"{}a1+unknown".format(base_version)|"0.20160928"|' ${WRKSRC}/setup.py
