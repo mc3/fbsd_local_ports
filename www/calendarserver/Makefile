@@ -2,7 +2,7 @@
 
 PORTNAME=	calendarserver
 PORTVERSION=	9.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	    www python
 MASTER_SITES=	https://github.com/apple/ccs-calendarserver/archive/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -64,6 +64,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|"{}a1+unknown".format(base_version)|"9.0"|' ${WRKSRC}/setup.py
 	@${REINPLACE_CMD} -e 's|"/etc/caldavd/caldavd.plist"|"${ETCDIR}/caldavd.plist"|g' ${WRKSRC}/twistedcaldav/stdconfig.py
 	@${REINPLACE_CMD} -e 's|/etc/caldavd|${ETCDIR}|g' ${WRKSRC}/conf/caldavd.plist
+	@${REINPLACE_CMD} -e 's|daemon|caldavd|g' ${WRKSRC}/conf/caldavd.plist
 	@${REINPLACE_CMD} -e 's|/var/run|/var/run/caldavd|g' ${WRKSRC}/conf/caldavd.plist
 
 post-install:
