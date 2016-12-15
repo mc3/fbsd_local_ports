@@ -2,7 +2,7 @@
 
 PORTNAME=	calendarserver
 PORTVERSION=	9.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	    www python
 MASTER_SITES=	https://github.com/apple/ccs-calendarserver/archive/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
