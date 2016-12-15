@@ -2,7 +2,7 @@
 
 PORTNAME=	calendarserver
 PORTVERSION=	9.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	    www python
 MASTER_SITES=	https://github.com/apple/ccs-calendarserver/archive/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -73,6 +73,7 @@ post-install:
 	${MKDIR} ${STAGEDIR}${ETCDIR}/auth
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	(cd ${WRKSRC}/conf && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
 	(cd ${STAGEDIR}${DOCSDIR} && ${RM} *.8)
 	##(cd ${WRKSRC}/doc && \
