@@ -2,7 +2,7 @@
 
 PORTNAME=	calendarserver
 PORTVERSION=	9.0
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	    www python
 MASTER_SITES=	https://github.com/apple/ccs-calendarserver/archive/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,10 +12,6 @@ MAINTAINER=	axel.rau@chaos1.de
 COMMENT=	Calendar and Contacts Server from Apple (RFC 4791, RFC 6352)
 
 LICENSE=	APACHE20
-
-PORTDOCS=	*
-PORTEXAMPLES=	*
-OPTIONS_DEFINE=	DOCS EXAMPLES
 
 RUN_DEPENDS=	memcached:databases/memcached \
 		${PYTHON_PKGNAMEPREFIX}calendar>=2.1:devel/py-calendar \
@@ -33,6 +29,10 @@ RUN_DEPENDS=	memcached:databases/memcached \
 		${PYTHON_PKGNAMEPREFIX}twisted>=16.4.1:devel/py-twisted \
 		${PYTHON_PKGNAMEPREFIX}xattr>=0.7.8:devel/py-xattr \
 		${PYTHON_PKGNAMEPREFIX}zope.interface>=4.1.3:devel/py-zope.interface
+
+PORTDOCS=	*
+PORTEXAMPLES=	*
+OPTIONS_DEFINE=	DOCS EXAMPLES
 
 USES=	pgsql:9.1+ python:2.7
 USE_PYTHON=	autoplist distutils
