@@ -1,10 +1,9 @@
 # Created by: Ashish SHUKLA <ashish@FreeBSD.org>
-# $FreeBSD: head/mail/archiveopteryx-devel/Makefile 407488 2016-01-29 17:12:39Z feld $
+# $FreeBSD: head/mail/archiveopteryx-devel/Makefile 431251 2017-01-12 11:30:50Z amdmi3 $
 
 PORTNAME=	archiveopteryx
-PORTVERSION=	3.2.99.20160503
-PORTREVISION=	1
-CATEGORIES= mail
+PORTVERSION=	3.2.99.20161205
+CATEGORIES=	mail
 PKGNAMESUFFIX=	-devel
 
 MAINTAINER=	feld@FreeBSD.org
@@ -12,16 +11,18 @@ COMMENT=	Advanced PostgreSQL-based IMAP/POP server
 
 LICENSE=	MIT
 
-BUILD_DEPENDS=	jam:${PORTSDIR}/devel/jam
+BROKEN_powerpc64=	Does not build
+
+BUILD_DEPENDS=	jam:devel/jam
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mc3
 GH_PROJECT=	aox
-GH_TAGNAME=	b48331f
+GH_TAGNAME=	f33ab3a
 
-USES=		perl5 tar:bzip2 pgsql:9.1+
-USE_OPENSSL=	yes
+USES=		perl5 ssl tar:bzip2
 USE_PERL5=	build
+WITH_PGSQL=	client
 
 PORTDOCS=	COPYING README license.txt
 
@@ -40,15 +41,19 @@ JAM?=		${LOCALBASE}/bin/jam
 
 .include <bsd.port.pre.mk>
 
-# force Clang when on FreeBSD 10+
-.if ${OSVERSION} >= 1000000
+# force Clang when on FreeBSD
+.if ${OPSYS} == FreeBSD
 JAMARG=	"-sCLANG=1"
 .endif
 
 post-patch:
 	@${GREP} -Rl '%%[[:alpha:]]\+%%' ${WRKSRC} |${XARGS} ${REINPLACE_CMD} \
 		-e 's,%%PREFIX%%,${PREFIX},g'
-	${REINPLACE_CMD} "s|INSTALLROOT ?= \"\" ;|INSTALLROOT = \"${STAGEDIR}\" ;|" ${WRKSRC}/Jamsettings
+	${REINPLACE_CMD} -e "s|\(C++FLAGS =\)|\1 -I${OPENSSLINC}|g" \
+		-e"s|INSTALLROOT ?= \"\" ;|INSTALLROOT = \"${STAGEDIR}\" ;|" \
+		${WRKSRC}/Jamsettings
+	${REINPLACE_CMD} -e "s|\(-lcrypto\)|-L${OPENSSLLIB} \1|g" \
+		${WRKSRC}/server/Jamfile
 
 do-build:
 	@cd ${WRKSRC} && ${JAM} ${JAMARG}
