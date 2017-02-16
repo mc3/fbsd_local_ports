@@ -2,7 +2,7 @@
 # $FreeBSD: head/mail/archiveopteryx-devel/Makefile 431251 2017-01-12 11:30:50Z amdmi3 $
 
 PORTNAME=	archiveopteryx
-PORTVERSION=	3.2.99.20161205
+PORTVERSION=	3.2.99.20170110
 CATEGORIES=	mail
 PKGNAMESUFFIX=	-devel
 
@@ -18,7 +18,7 @@ BUILD_DEPENDS=	jam:devel/jam
 USE_GITHUB=	yes
 GH_ACCOUNT=	mc3
 GH_PROJECT=	aox
-GH_TAGNAME=	f33ab3a
+GH_TAGNAME= b63b681
 
 USES=		perl5 ssl tar:bzip2
 USE_PERL5=	build
