@@ -17,7 +17,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>=1.7.2:security/py3-cryptograph
 		${PYTHON_PKGNAMEPREFIX}paramiko-clc>=2.1.2:security/py-paramiko-clc \
 		${PYTHON_PKGNAMEPREFIX}pycrypto>=2.6.1:security/py3-pycrypto \
 		${PYTHON_PKGNAMEPREFIX}openssl>=16.2.0:security/py3-openssl \
-		${PYTHON_PKGNAMEPREFIX}postgresql>=1.1.0:databases/py-postgresql 
+		${PYTHON_PKGNAMEPREFIX}postgresql>=1.1.0:databases/py-postgresql
 
 USES=		python:3.5+
 USE_PYTHON=	autoplist distutils
