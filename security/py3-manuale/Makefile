@@ -8,7 +8,7 @@ MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	axel.rau@chaos1.de
-COMMENT=	A fully manual Let's Encrypt/ACME client
+COMMENT=	Fully manual Let's Encrypt/ACME client
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
