@@ -2,6 +2,7 @@
 
 PORTNAME=	calendarserver
 PORTVERSION=	9.1
+PORTREVISION=   1
 DISTVERSIONPREFIX=	CalendarServer-
 CATEGORIES=	    www python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -32,7 +33,7 @@ PORTDOCS=	*
 PORTEXAMPLES=	*
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
-USES=	pgsql:9.1+ python:2.7
+USES=	pgsql:9.5+ python:2.7
 USE_PYTHON=	autoplist distutils
 USE_GITHUB=	yes
 GH_ACCOUNT=	apple
