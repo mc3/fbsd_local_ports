@@ -16,7 +16,7 @@ RUN_DEPENDS=	\
  ${PYTHON_PKGNAMEPREFIX}twisted>=16.6:devel/py-twisted
 
 DAL_RUN_DEPENDS=	\
- ${PYTHON_PKGNAMEPREFIX}sqlparse>=0.2.0:databases/py-sqlparse01
+ ${PYTHON_PKGNAMEPREFIX}sqlparse01==0.2.0:databases/py-sqlparse01
 
 POSTGRES_RUN_DEPENDS=	\
  ${PYTHON_PKGNAMEPREFIX}pg8000>=1.10.2:databases/py-pg8000
