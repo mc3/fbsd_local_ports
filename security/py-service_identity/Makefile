@@ -2,7 +2,7 @@
 # $FreeBSD: head/security/py-service_identity/Makefile 412349 2016-04-01 14:25:16Z mat $
 
 PORTNAME=	service_identity
-PORTVERSION=	16.0.0
+PORTVERSION=	17.0.0
 CATEGORIES=	security python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
