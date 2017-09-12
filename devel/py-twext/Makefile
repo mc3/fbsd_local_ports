@@ -1,7 +1,7 @@
 # $FreeBSD: head/devel/py-twext/Makefile 428898 2016-12-19 01:41:06Z wen $
 
 PORTNAME=	twext
-PORTVERSION=	0.20160818
+PORTVERSION=	0.20170227
 CATEGORIES=	devel python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -10,13 +10,13 @@ COMMENT=	Extensions to Twisted
 
 LICENSE=	APACHE20
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}twisted>=15.4.0:devel/py-twisted
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}twisted>=16.6.0:devel/py-twisted
 RUN_DEPENDS=	\
  ${PYTHON_PKGNAMEPREFIX}cffi>=0.6:devel/py-cffi \
- ${PYTHON_PKGNAMEPREFIX}twisted>=15.4:devel/py-twisted
+ ${PYTHON_PKGNAMEPREFIX}twisted>=16.6:devel/py-twisted
 
 DAL_RUN_DEPENDS=	\
- ${PYTHON_PKGNAMEPREFIX}sqlparse01>=0.1.19:databases/py-sqlparse01 \
+ ${PYTHON_PKGNAMEPREFIX}sqlparse02==0.2.0:databases/py-sqlparse02 \
 
 POSTGRES_RUN_DEPENDS=	\
  ${PYTHON_PKGNAMEPREFIX}pg8000>=1.10.2:databases/py-pg8000
@@ -34,9 +34,9 @@ NO_ARCH=yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	apple
 GH_PROJECT=	ccs-twistedextensions
-GH_TAGNAME=	a8528bc
+GH_TAGNAME=	2c4046d
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|"{}a1+unknown".format(base_version)|"0.20160928"|' ${WRKSRC}/setup.py
+	@${REINPLACE_CMD} -e 's|"{}a1+unknown".format(base_version)|"0.20170227"|' ${WRKSRC}/setup.py
 
 .include <bsd.port.mk>
