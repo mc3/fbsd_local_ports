@@ -7,7 +7,7 @@ MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	sqlparse-${DISTVERSION}
 
-MAINTAINER=	cullum@c0ffee.net
+MAINTAINER=	axel.rau@chaos1.de
 COMMENT=	Non-validating SQL parser for Python (version 0.2.0)
 
 LICENSE=	BSD3CLAUSE

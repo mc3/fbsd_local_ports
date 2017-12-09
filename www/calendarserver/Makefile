@@ -3,8 +3,8 @@
 PORTNAME=	calendarserver
 PORTVERSION=	9.1
 DISTVERSIONPREFIX=	CalendarServer-
-CATEGORIES=	    www python
 PORTREVISION=	1
+CATEGORIES=	    www python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	axel.rau@chaos1.de
