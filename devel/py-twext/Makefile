@@ -1,4 +1,4 @@
-# $FreeBSD: head/devel/py-twext/Makefile 428898 2016-12-19 01:41:06Z wen $
+# $FreeBSD$
 
 PORTNAME=	twext
 PORTVERSION=	0.20170227
@@ -10,16 +10,16 @@ COMMENT=	Extensions to Twisted
 
 LICENSE=	APACHE20
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}twisted>=16.6.0:devel/py-twisted
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}twisted>=16.6.0:devel/py-twisted@${FLAVOR}
 RUN_DEPENDS=	\
- ${PYTHON_PKGNAMEPREFIX}cffi>=0.6:devel/py-cffi \
- ${PYTHON_PKGNAMEPREFIX}twisted>=16.6:devel/py-twisted
+ ${PYTHON_PKGNAMEPREFIX}cffi>=0.6:devel/py-cffi@${FLAVOR} \
+ ${PYTHON_PKGNAMEPREFIX}twisted>=16.6:devel/py-twisted@${FLAVOR}
 
 DAL_RUN_DEPENDS=	\
- ${PYTHON_PKGNAMEPREFIX}sqlparse02==0.2.0:databases/py-sqlparse02 \
+ ${PYTHON_PKGNAMEPREFIX}sqlparse02==0.2.0:databases/py-sqlparse02@${FLAVOR} \
 
 POSTGRES_RUN_DEPENDS=	\
- ${PYTHON_PKGNAMEPREFIX}pg8000>=1.10.2:databases/py-pg8000
+ ${PYTHON_PKGNAMEPREFIX}pg8000>=1.10.2:databases/py-pg8000@${FLAVOR}
 
 OPTIONS_DEFINE=	DAL POSTGRES
 DAL_DESC=	Enables use of the Database Abstraction Layer.
