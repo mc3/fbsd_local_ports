@@ -2,7 +2,7 @@
 # $FreeBSD: head/mail/archiveopteryx-devel/Makefile 473699 2018-07-02 04:00:29Z linimon $
 
 PORTNAME=	archiveopteryx
-PORTVERSION=	3.2.99.20180705
+PORTVERSION=	3.2.99.20180717
 PORTREVISION=	0
 CATEGORIES=	mail
 PKGNAMESUFFIX=	-devel
@@ -21,7 +21,7 @@ BUILD_DEPENDS=	jam:devel/jam
 USE_GITHUB=	yes
 GH_ACCOUNT=	mc3
 GH_PROJECT=	aox
-GH_TAGNAME=	c73de3f
+GH_TAGNAME=	d3202fd
 
 USES=		perl5 ssl
 USE_PERL5=	build
