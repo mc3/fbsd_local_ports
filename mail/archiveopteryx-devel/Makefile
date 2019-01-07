@@ -2,7 +2,7 @@
 # $FreeBSD: head/mail/archiveopteryx-devel/Makefile 473699 2018-07-02 04:00:29Z linimon $
 
 PORTNAME=	archiveopteryx
-PORTVERSION=	3.2.99.20180717
+PORTVERSION=	3.2.99.20181231
 PORTREVISION=	0
 CATEGORIES=	mail
 PKGNAMESUFFIX=	-devel
@@ -44,9 +44,11 @@ JAM?=		${LOCALBASE}/bin/jam
 
 .include <bsd.port.pre.mk>
 
-# force Clang when on FreeBSD
+# force Clang when on FreeBSD with clang in base
 .if ${OPSYS} == FreeBSD
-JAMARG=	"-sCLANG=1"
+.if ! ${ARCH:Mmips*} && ! ${ARCH:Mpowerpc*} && ! ${ARCH} == sparc64
+JAMARG+=	"-sCLANG=1"
+.endif
 .endif
 
 post-patch:
