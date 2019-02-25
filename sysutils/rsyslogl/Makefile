@@ -36,7 +36,7 @@ RFC3195_DESC=	RFC3195 input support for rsyslog
 SNMP_DESC=	SNMP trap sender for rsyslog
 UUID_DESC=	Support for generating a UUID per log message
 
-USES=		libtool pkgconfig autoreconf
+USES=		libtool pkgconfig autoreconf python:env
 
 .include <bsd.port.options.mk>
 
