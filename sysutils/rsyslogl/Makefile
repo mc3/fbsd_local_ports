@@ -2,24 +2,23 @@
 
 PORTNAME=	rsyslogl
 PORTVERSION=	7.6.7
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.rsyslog.com/files/download/rsyslog/
 DISTNAME=	rsyslog-${PORTVERSION}
 
-MAINTAINER=	brd@FreeBSD.org
+MAINTAINER=	axel.rau@chaos1.de
 COMMENT=	Syslogd supporting SQL, TCP, and TLS
 
-BUILD_DEPENDS=	libgcrypt-config:${PORTSDIR}/security/libgcrypt \
-		rst2man:${PORTSDIR}/textproc/py-docutils
+BUILD_DEPENDS=	{PYTHON_PKGNAMEPREFIX}docutils>0:textproc/py-docutils@${PY_FLAVOR}
 
-LIB_DEPENDS=	libee.so:${PORTSDIR}/devel/libee \
-		libestr.so:${PORTSDIR}/devel/libestr \
-		libjson-c.so:${PORTSDIR}/devel/json-c \
-		liblogging-stdlog.so:${PORTSDIR}/devel/liblogging
+LIB_DEPENDS=	libee.so:devel/libee \
+		libestr.so:devel/libestr \
+		libjson-c.so:devel/json-c \
+		liblogging-stdlog.so:devel/liblogging
 
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	autoconf
+GNU_CONFIGURE=  yes
 
 PORTSCOUT=	limit:^7\.4
 PORTDOCS=	*
@@ -37,7 +36,7 @@ RFC3195_DESC=	RFC3195 input support for rsyslog
 SNMP_DESC=	SNMP trap sender for rsyslog
 UUID_DESC=	Support for generating a UUID per log message
 
-USES=		libtool pkgconfig
+USES=		libtool pkgconfig autoreconf
 
 .include <bsd.port.options.mk>
 
@@ -143,7 +142,7 @@ CFLAGS+=	${CPPFLAGS}
 USE_RC_SUBR=	${PORTNAME}d
 SUB_FILES=	pkg-message
 
-CONFIGURE_ARGS+=	--enable-imfile --enable-mail --enable-imdiag --enable-impstats --enable-omstdout --enable-cached-man-pages --disable-testbench
+CONFIGURE_ARGS+=	--disable-imuxsock-rfc5424 --enable-imfile --enable-mail --enable-imdiag --enable-impstats --enable-omstdout --enable-cached-man-pages --disable-testbench
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/lib/rsyslog/|${PREFIX}/lib/rsyslog/|'\
