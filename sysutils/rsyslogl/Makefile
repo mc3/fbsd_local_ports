@@ -2,7 +2,7 @@
 
 PORTNAME=	rsyslogl
 PORTVERSION=	7.6.7
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.rsyslog.com/files/download/rsyslog/
 DISTNAME=	rsyslog-${PORTVERSION}
@@ -23,7 +23,7 @@ GNU_CONFIGURE=  yes
 
 PORTSCOUT=	limit:^7\.4
 
-OPTIONS_DEFINE=	DBI DOCS GNUTLS GSSAPI MYSQL PGSQL RELP RFC3195 SNMP UUID
+OPTIONS_DEFINE=	RELP
 
 DBI_DESC=	LibDBI output module for rsyslog
 GNUTLS_DESC=	GNUTLS module for rsyslog
@@ -39,87 +39,23 @@ USES=		libtool pkgconfig autoreconf python:env
 
 .include <bsd.port.options.mk>
 
-.if ${PORT_OPTIONS:MDBI}
-LIB_DEPENDS+=	libdbi.so:${PORTSDIR}/databases/libdbi
-CONFIGURE_ARGS+=--enable-libdbi
-PLIST_FILES+=	lib/rsyslog/omlibdbi.so
-.else
 CONFIGURE_ARGS+=--disable-libdbi
-.endif
-
-.if ${PORT_OPTIONS:MGNUTLS}
-LIB_DEPENDS+=	libgnutls.so:${PORTSDIR}/security/gnutls
-CONFIGURE_ARGS+=--enable-gnutls
-PLIST_FILES+=	lib/rsyslog/lmnsd_gtls.so
-.else
 CONFIGURE_ARGS+=--disable-gnutls
-.endif
-
-.if ${PORT_OPTIONS:MGSSAPI}
-CONFIGURE_ARGS+=--enable-gssapi-krb5
-PLIST_FILES+=	lib/rsyslog/imgssapi.so \
-		lib/rsyslog/lmgssutil.so \
-		lib/rsyslog/omgssapi.so
-.else
 CONFIGURE_ARGS+=--disable-gssapi-krb5
-.endif
-
-.if ${PORT_OPTIONS:MMYSQL}
-USE_MYSQL=	yes
-CONFIGURE_ARGS+=--enable-mysql
-PLIST_FILES+=	lib/rsyslog/ommysql.so
-.else
 CONFIGURE_ARGS+=--disable-mysql
-.endif
-
-.if ${PORT_OPTIONS:MPGSQL}
-USES=pgsql
-CONFIGURE_ARGS+=--enable-pgsql
-PLIST_FILES+=	lib/rsyslog/ompgsql.so
-.else
 CONFIGURE_ARGS+=--disable-pgsql
-.endif
-
-.if ${PORT_OPTIONS:MRELP}
-LIB_DEPENDS+=	librelp.so:${PORTSDIR}/devel/librelp
-CONFIGURE_ARGS+=--enable-relp
-PLIST_FILES+=	lib/rsyslog/imrelp.so \
-		lib/rsyslog/omrelp.so
-.else
-CONFIGURE_ARGS+=--disable-relp
-.endif
-
-.if ${PORT_OPTIONS:MRFC3195}
-LIB_DEPENDS+=	liblogging.so:${PORTSDIR}/devel/liblogging
-CONFIGURE_ARGS+=--enable-rfc3195
-PLIST_FILES+=	lib/rsyslog/im3195.so
-.else
 CONFIGURE_ARGS+=--disable-rfc3195
-.endif
-
-.if ${PORT_OPTIONS:MSNMP}
-LIB_DEPENDS+=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp
-CONFIGURE_ARGS+=--enable-snmp
-PLIST_FILES+=	lib/rsyslog/omsnmp.so
-.else
 CONFIGURE_ARGS+=--disable-snmp
-.endif
-
-.if ${PORT_OPTIONS:MUUID}
-LIB_DEPENDS+=	libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid
-.else
 CONFIGURE_ARGS+=--disable-uuid
-.endif
 
-.ifdef WITH_MYSQL_MICROSECONDS
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-mysql-microseconds
-.endif
+RELP_DESC=		RELP input/output module for rsyslog
+RELP_LIB_DEPENDS=	librelp.so:devel/librelp
+RELP_CONFIGURE_ENABLE=	relp
+RELP_PLIST_FILES=	lib/rsyslog/imrelp.so \
+			lib/rsyslog/omrelp.so
 
-.ifdef WITH_SANE_HOSTNAME
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-sane-hostname
-.endif
 
-CONFLICTS=	rsyslog6-[1-9]* rsyslog-devel-[0-9]*
+CONFLICTS=	rsyslog6-[1-9]* rsyslog7-[1-9]* rsyslog8-[1-9]* rsyslog-devel-[0-9]*
 CFLAGS+=	-I${LOCALBASE}/include
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
