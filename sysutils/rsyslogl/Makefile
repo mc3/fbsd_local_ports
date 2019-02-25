@@ -2,15 +2,16 @@
 
 PORTNAME=	rsyslogl
 PORTVERSION=	7.6.7
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.rsyslog.com/files/download/rsyslog/
 DISTNAME=	rsyslog-${PORTVERSION}
 
 MAINTAINER=	axel.rau@chaos1.de
-COMMENT=	Syslogd supporting SQL, TCP, and TLS
+COMMENT=	Syslogd supporting SQL, TCP, and TLS, local version frozen at 7.6.7
 
-BUILD_DEPENDS=	{PYTHON_PKGNAMEPREFIX}docutils>0:textproc/py-docutils@${PY_FLAVOR}
+LICENSE=	GPLv3 LGPL3 APACHE20
+LICENSE_COMB=	multi
 
 LIB_DEPENDS=	libee.so:devel/libee \
 		libestr.so:devel/libestr \
@@ -21,7 +22,6 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=  yes
 
 PORTSCOUT=	limit:^7\.4
-PORTDOCS=	*
 
 OPTIONS_DEFINE=	DBI DOCS GNUTLS GSSAPI MYSQL PGSQL RELP RFC3195 SNMP UUID
 
