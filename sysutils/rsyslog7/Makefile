@@ -1,10 +1,11 @@
 # $FreeBSD: head/sysutils/rsyslog7/Makefile 369659 2014-09-30 20:10:25Z brd $
 
-PORTNAME=	rsyslog
+PORTNAME=	rsyslog7
 PORTVERSION=	7.6.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.rsyslog.com/files/download/rsyslog/
+DISTNAME=	$rsyslog-${PORTVERSION}
 
 MAINTAINER=	brd@FreeBSD.org
 COMMENT=	Syslogd supporting SQL, TCP, and TLS
