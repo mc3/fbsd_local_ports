@@ -3,7 +3,7 @@
 
 PORTNAME=	ip4r
 PORTVERSION=	2.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases net
 
 MAINTAINER=	tobez@FreeBSD.org
@@ -11,14 +11,12 @@ COMMENT=	IP address and IP range index types for PostgreSQL
 
 LICENSE=	PostgreSQL
 
-
 USES=		gmake pgsql
 LLD_UNSAFE=	yes
 
 MAKE_ARGS=	USE_PGXS=1
 
 .include <bsd.port.options.mk>
-
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	RhodiumToad
