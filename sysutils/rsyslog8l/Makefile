@@ -2,7 +2,7 @@
 
 PORTNAME=	rsyslog8l
 PORTVERSION=	8.1903.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.rsyslog.com/download/files/download/rsyslog/
 DISTNAME=	rsyslog-${PORTVERSION}
@@ -130,7 +130,7 @@ CPPFLAGS+=-march=i686
 CONFIGURE_ENV+=	LIBESTR_CFLAGS="${CFLAGS}" LIBESTR_LIBS="${LDFLAGS} -lestr" LIBEE_CFLAGS="${CFLAGS}" LIBEE_LIBS="${LDFLAGS} -lee -lkvm"
 CFLAGS+=	${CPPFLAGS}
 
-USE_RC_SUBR=	${PORTNAME}d
+USE_RC_SUBR=	rsyslogd
 SUB_FILES=	pkg-message
 
 CONFIGURE_ARGS+=	--enable-imdiag --enable-imfile --enable-impstats --enable-mail --enable-omprog --enable-omstdout --enable-omuxsock --enable-rfc3195 --disable-testbench --enable-mmutf8fix
