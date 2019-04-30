@@ -2,6 +2,7 @@
 
 PORTNAME=	rsyslog8l
 PORTVERSION=	8.1903.0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.rsyslog.com/download/files/download/rsyslog/
 DISTNAME=	rsyslog-${PORTVERSION}
