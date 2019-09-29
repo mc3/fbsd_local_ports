@@ -1,8 +1,7 @@
 # $FreeBSD: head/sysutils/rsyslog8/Makefile 487295 2018-12-12 13:28:50Z matthew $
 
 PORTNAME=	rsyslog8l
-PORTVERSION=	8.1903.0
-PORTREVISION=	3
+PORTVERSION=	8.1908.0
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.rsyslog.com/download/files/download/rsyslog/
 DISTNAME=	rsyslog-${PORTVERSION}
@@ -13,8 +12,7 @@ COMMENT=	Syslogd supporting SQL, TCP, and TLS
 LICENSE=	GPLv3 LGPL3 APACHE20
 LICENSE_COMB=	multi
 
-LIB_DEPENDS=	libee.so:devel/libee \
-		libestr.so:devel/libestr \
+LIB_DEPENDS=	libestr.so:devel/libestr \
 		libfastjson.so:devel/libfastjson \
 		liblogging-rfc3195.so:devel/liblogging \
 		libuuid.so:misc/e2fsprogs-libuuid \
@@ -27,10 +25,8 @@ USES=		libtool pkgconfig autoreconf python:env
 
 USE_LDCONFIG=	yes
 
-CONFLICTS_BUILD=	libinotify-*
-
-OPTIONS_DEFINE=	DBI DOCS ELASTIC GCRYPT GSSAPI JSONPARSE  MYSQL PGSQL \
-		RELP SNMP NORMALIZE
+OPTIONS_DEFINE=	DBI DOCS ELASTIC GCRYPT GSSAPI HTTP JSONPARSE KAFKA \
+		MYSQL NORMALIZE PGSQL RABBITMQ RELP SNMP
 OPTIONS_RADIO=	SSLLIB
 OPTIONS_RADIO_SSLLIB=	GNUTLS OPENSSL
 OPTIONS_DEFAULT=GCRYPT
@@ -64,15 +60,30 @@ GSSAPI_PLIST_FILES=	lib/rsyslog/imgssapi.so \
 			lib/rsyslog/lmgssutil.so \
 			lib/rsyslog/omgssapi.so
 
+HTTP_DESC=		HTTP output module for rsyslog
+HTTP_CONFIGURE_ENABLE=	omhttp
+HTTP_PLIST_FILES=	lib/rsyslog/omhttp.so
+
 JSONPARSE_DESC=		JSONPARSE module for rsyslog
 JSONPARSE_CONFIGURE_ENABLE=	mmjsonparse
 JSONPARSE_PLIST_FILES=	lib/rsyslog/mmjsonparse.so
+
+KAFKA_DESC=		Kafka input/output module for rsyslog
+KAFKA_LIB_DEPENDS=	librdkafka.so:net/librdkafka
+KAFKA_CONFIGURE_ENABLE=	imkafka omkafka
+KAFKA_PLIST_FILES=	lib/rsyslog/imkafka.so \
+			lib/rsyslog/omkafka.so
 
 MYSQL_DESC=		MySQL output module for rsyslog
 MYSQL_USES=		mysql
 MYSQL_CONFIGURE_ENABLE=	mysql
 MYSQL_PLIST_FILES=	lib/rsyslog/ommysql.so
 MYSQL_PORTDOCS=		plugins/ommysql/createDB.sql
+
+NORMALIZE_DESC=		Message normalization module for rsyslog
+NORMALIZE_LIB_DEPENDS=	liblognorm.so:devel/liblognorm
+NORMALIZE_CONFIGURE_ENABLE=	mmnormalize
+NORMALIZE_PLIST_FILES=	lib/rsyslog/mmnormalize.so
 
 OPENSSL_USES=		ssl
 OPENSSL_CONFIGURE_ENABLE=	openssl
@@ -86,6 +97,11 @@ PGSQL_USES=		pgsql
 PGSQL_CONFIGURE_ENABLE=	pgsql
 PGSQL_PLIST_FILES=	lib/rsyslog/ompgsql.so
 PGSQL_PORTDOCS=		plugins/ompgsql/createDB.sql
+
+RABBITMQ_DESC=		RabbitMQ output module for rsyslog
+RABBITMQ_LIB_DEPENDS=	librabbitmq.so:net/rabbitmq-c
+RABBITMQ_CONFIGURE_ENABLE=	omrabbitmq
+RABBITMQ_PLIST_FILES=	lib/rsyslog/omrabbitmq.so
 
 RELP_DESC=		RELP input/output module for rsyslog
 RELP_LIB_DEPENDS=	librelp.so:devel/librelp
@@ -134,6 +150,12 @@ USE_RC_SUBR=	rsyslogd
 SUB_FILES=	pkg-message
 
 CONFIGURE_ARGS+=	--enable-imdiag --enable-imfile --enable-impstats --enable-mail --enable-omprog --enable-omstdout --enable-omuxsock --enable-rfc3195 --disable-testbench --enable-mmutf8fix
+
+CONFIGURE_ARGS+=	--enable-imdiag --enable-imfile --enable-impstats \
+			--enable-mail --enable-omprog --enable-omstdout \
+			--enable-omuxsock --enable-rfc3195 --disable-testbench \
+            --enable-mmutf8fix \
+            ac_cv_func_inotify_init=no ac_cv_header_sys_inotify_h=no
 
 .if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1200061
 CONFIGURE_ARGS+=	--enable-imuxsock-rfc5424
