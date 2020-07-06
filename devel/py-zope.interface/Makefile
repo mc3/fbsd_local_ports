@@ -2,7 +2,7 @@
 # $FreeBSD: head/devel/py-zope.interface/Makefile 483296 2018-10-28 14:13:01Z rm $
 
 PORTNAME=	zope.interface
-PORTVERSION=	4.6.0
+PORTVERSION=	5.1.0
 CATEGORIES=	devel python zope
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
