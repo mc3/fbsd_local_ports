@@ -1,10 +1,12 @@
-PORTNAME=	rsyslog
-PORTVERSION=	8.2202.0
-PORTREVISION=	1
-CATEGORIES=	sysutils
-MASTER_SITES=	http://www.rsyslog.com/files/download/rsyslog/
+# $FreeBSD: head/sysutils/rsyslog8/Makefile 487295 2018-12-12 13:28:50Z matthew $
 
-MAINTAINER=	matthew@FreeBSD.org
+PORTNAME=	rsyslog8l
+PORTVERSION=	8.1908.0
+CATEGORIES=	sysutils
+MASTER_SITES=	http://www.rsyslog.com/download/files/download/rsyslog/
+DISTNAME=	rsyslog-${PORTVERSION}
+
+MAINTAINER=	axel.rau@chaos1.de
 COMMENT=	Syslogd supporting SQL, TCP, and TLS
 
 LICENSE=	GPLv3 LGPL3 APACHE20
@@ -15,11 +17,13 @@ LIB_DEPENDS=	libestr.so:devel/libestr \
 		liblogging-rfc3195.so:devel/liblogging \
 		libuuid.so:misc/e2fsprogs-libuuid \
 		libcurl.so:ftp/curl
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}docutils>0:textproc/py-docutils@${PY_FLAVOR}
-
-USES=		cpe libtool pkgconfig autoreconf python:env
+##BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}docutils>0:textproc/py-docutils@${PY_FLAVOR}
 
 PORTSCOUT=	limit:^8\.
+
+USES=		libtool pkgconfig autoreconf python:env
+
+USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	DBI DOCS ELASTIC GCRYPT GSSAPI HTTP JSONPARSE KAFKA \
 		MYSQL NORMALIZE PGSQL RABBITMQ RELP SNMP
@@ -87,6 +91,7 @@ OPENSSL_CONFIGURE_ENV=	OPENSSL_LIBS="-L${OPENSSLLIB} -lssl -lcrypto" \
 			OPENSSL_CFLAGS="-I ${OPENSSLINC}"
 OPENSSL_PLIST_FILES=	lib/rsyslog/lmnsd_ossl.so
 
+
 PGSQL_DESC=		PostgreSQL output module for rsyslog
 PGSQL_USES=		pgsql
 PGSQL_CONFIGURE_ENABLE=	pgsql
@@ -108,6 +113,11 @@ SNMP_DESC=		SNMP trap sender for rsyslog
 SNMP_LIB_DEPENDS=	libnetsnmp.so:net-mgmt/net-snmp
 SNMP_CONFIGURE_ENABLE=	snmp
 SNMP_PLIST_FILES=	lib/rsyslog/omsnmp.so
+
+NORMALIZE_DESC=		Message normalization module for rsyslog
+NORMALIZE_LIB_DEPENDS=	liblognorm.so:devel/liblognorm
+NORMALIZE_CONFIGURE_ENABLE=	mmnormalize
+NORMALIZE_PLIST_FILES=	lib/rsyslog/mmnormalize.so
 
 .ifdef WITH_MYSQL_MICROSECONDS
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-mysql-microseconds
@@ -136,22 +146,30 @@ CPPFLAGS+=-march=i686
 CONFIGURE_ENV+=	LIBESTR_CFLAGS="${CFLAGS}" LIBESTR_LIBS="${LDFLAGS} -lestr" LIBEE_CFLAGS="${CFLAGS}" LIBEE_LIBS="${LDFLAGS} -lee -lkvm"
 CFLAGS+=	${CPPFLAGS}
 
-USE_RC_SUBR=	${PORTNAME}d
+USE_RC_SUBR=	rsyslogd
 SUB_FILES=	pkg-message
+
+CONFIGURE_ARGS+=	--enable-imdiag --enable-imfile --enable-impstats --enable-mail --enable-omprog --enable-omstdout --enable-omuxsock --enable-rfc3195 --disable-testbench --enable-mmutf8fix
 
 CONFIGURE_ARGS+=	--enable-imdiag --enable-imfile --enable-impstats \
 			--enable-mail --enable-omprog --enable-omstdout \
 			--enable-omuxsock --enable-rfc3195 --disable-testbench \
-            --enable-mmutf8fix
+            --enable-mmutf8fix \
+            ac_cv_func_inotify_init=no ac_cv_header_sys_inotify_h=no
+
+.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1200061
+CONFIGURE_ARGS+=	--enable-imuxsock-rfc5424
+.else
+CONFIGURE_ARGS+=	--disable-imuxsock-rfc5424
+.endif
 
 post-patch:
+	@${REINPLACE_CMD} -e 's|/lib/rsyslog/|${PREFIX}/lib/rsyslog/|'\
+		${WRKSRC}/tools/syslogd.c
 	@${GREP} -rl '/etc/rsyslog.conf' ${WRKSRC}|${XARGS} ${REINPLACE_CMD} -e\
 		's|/etc/rsyslog.conf|${PREFIX}/etc/rsyslog.conf|'
+	@${REINPLACE_CMD} -e 's,/lib/rsyslog,${PREFIX}/lib/rsyslog,' ${WRKSRC}/tools/syslogd.c
 	@${FIND} ${WRKSRC} -name '*.bak' -delete
-
-post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/rsyslog.d
-	${INSTALL_DATA} ${FILESDIR}/rsyslog.conf ${STAGEDIR}${PREFIX}/etc/rsyslog.conf.sample
 
 post-install-DOCS-on:
 .for SQL in ${PORTDOCS:M*.sql}

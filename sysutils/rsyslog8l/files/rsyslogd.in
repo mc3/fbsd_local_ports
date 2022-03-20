@@ -1,4 +1,8 @@
 #!/bin/sh
+#
+# $FreeBSD: head/sysutils/rsyslog8/files/rsyslogd.in 340872 2014-01-24 00:14:07Z mat $
+#
+
 
 # PROVIDE: rsyslogd
 # REQUIRE: mountcritremote cleanvar newsyslog ldconfig
@@ -13,7 +17,6 @@ load_rc_config $name
 : ${rsyslogd_enable:="NO"}
 : ${rsyslogd_pidfile:="/var/run/rsyslogd.pid"}
 : ${rsyslogd_config:="%%PREFIX%%/etc/rsyslog.conf"}
-: ${rsyslogd_env:="TZ=/etc/localtime"}
 pidfile="${rsyslogd_pidfile}"
 command_args="-i ${pidfile} -f ${rsyslogd_config}"
 required_files="${rsyslogd_config}"
