@@ -1,0 +1,33 @@
+--- tools/Makefile.orig	2021-12-10 19:40:51 UTC
++++ tools/Makefile
+@@ -97,16 +97,23 @@ build-arch: $(DAEMON_BIN)
+ 
+ install-indep:
+ 	@echo "Creating "$(HOME2L_INSTALL)"/VERSION..."; echo "Home2l "$(BUILD_VERSION)" "$(BUILD_DATE) > $(HOME2L_INSTALL)/VERSION; chmod 644 $(HOME2L_INSTALL)/VERSION
+-	install -Dp -m 755 -t $(HOME2L_INSTALL)/bin $(SCRIPTS)
+-	install -Dp -m 644 -t $(HOME2L_INSTALL) env.sh README
+-	install -Dp -m 755 -t $(HOME2L_INSTALL)/install $(INITD)
+-	install -Dp -m 755 -t $(HOME2L_INSTALL)/bin h2l-mkdir.sh
++	install -d $(HOME2L_INSTALL)/bin $(HOME2L_INSTALL)/install $(HOME2L_INSTALL)/etc
++	##install -Dp -m 755 -t $(HOME2L_INSTALL)/bin $(SCRIPTS)
++	install -p -m 755 $(SCRIPTS) $(HOME2L_INSTALL)/bin
++	##install -Dp -m 644 -t $(HOME2L_INSTALL) env.sh README
++	install -p -m 644 env.sh README $(HOME2L_INSTALL)
++	##install -Dp -m 755 -t $(HOME2L_INSTALL)/install $(INITD)
++	install -p -m 755 $(INITD) $(HOME2L_INSTALL)/install
++	##install -Dp -m 755 -t $(HOME2L_INSTALL)/bin h2l-mkdir.sh
++	install -p -m 755 h2l-mkdir.sh $(HOME2L_INSTALL)/bin
+ 	if [ ! -e $(HOME2L_INSTALL)/etc ]; then \
+-	  find etc/ -type f -exec install -Dpm 644 "{}" "$(HOME2L_INSTALL)/{}" \; ; \
++	  ##find etc/ -type f -exec install -Dpm 644 "{}" "$(HOME2L_INSTALL)/{}" \; ; \
++	  find etc/ -type f -exec install -pm 644 "$(HOME2L_INSTALL)/{}" "{}" \; ; \
+ 	  chmod a+x $(HOME2L_INSTALL)/etc/rules-* ; \
+ 	fi
+ 
+ 
+ install-arch:
+-	BIN=$(HOME2L_INSTALL)/bin/$(ARCH);   \
+-	install -Dp $(STRIP) -m 755 -t $$BIN $(DAEMON_BIN);   \
++	BIN=$(HOME2L_INSTALL)/bin/$(ARCH); \
++	install -d $$BIN; \
++	install -p $(STRIP) -m 755 $(DAEMON_BIN) $$BIN; \

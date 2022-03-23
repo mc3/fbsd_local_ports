@@ -10,21 +10,42 @@ COMMENT=	The Home2Ls - Smart Tools for a Private Home
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-##RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-plugins
-LIB_DEPENDS=	libasound.so:audio/alsa-lib \
-		libfreetype.so:print/freetype2 \
-		libcurl.so:ftp/curl \
-		libjack.so:audio/jack
+BUILD_DEPENDS=  arm-none-eabi-gcc>0:devel/arm-none-eabi-gcc \
+                bash>0:shells/bash \
+                ##git>0:devel/git \
+                swig>0:devel/swig \
+	            readline>0:devel/readline \
+                sdl2>0:devel/sdl20 \
+                sdl2_ttf>0:graphics/sdl2_ttf \
+                GraphicsMagick>0:graphics/GraphicsMagick \
+                inkscape>0:graphics/inkscape \
+                avr-gcc>0:devel/avr-gcc \
+                avr-libc>0:devel/avr-libc
+                
+RUN_DEPENDS=	bash>0:shells/bash \
+                mosquitto>0:net/mosquitto \
+                avrdude>0:devel/avrdude
+                
+LIB_DEPENDS=    libmosquitto.so:net/mosquitto \
+                libmosquittopp.so:net/mosquitto
 
-USES=		compiler:c++11-lang gmake pkgconfig
+##                mosquitto_dynamic_security.so:net/mosquitto
+                 
+                
+USES=		compiler:c++11-lang gmake gettext python:3.9 \
+            gettext-tools shebangfix
+
+SHEBANG_GLOB=	*.sh *.py home2l-drv-weather check_pdf_links \
+                home2l-showhouse home2l-fpc
+
 USE_GITHUB=	yes
-USE_GL=		gl
-USE_XORG=	x11 xcursor xext xinerama
 GH_ACCOUNT=	gkiefer
 GH_PROJECT=	${PORTNAME}
 
-MAKE_ENV=	DATADIR=${DATADIR:Q} LIBDIR=${PREFIX:Q}/lib \
-		DOCSDIR=${DOCSDIR:Q} DESKTOPDIR=${DESKTOPDIR:Q}
-LDFLAGS+=	-lexecinfo
+MAKE_ENV=	
+LDFLAGS+=	
+
+USERS=		home2l
+GROUPS=		home2l
 
 .include <bsd.port.mk>

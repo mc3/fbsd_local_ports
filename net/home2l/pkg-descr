@@ -1,0 +1,9 @@
+The Home2L [houmtu:l] suite is a collection of tools and libraries for automation in private homes. Its main features and design goals are:
+Versatile Resources Library
+The central component of the Home2L suite is the Resources library. It connects physical sensors and actors, software services, computers and more. Everything that can act or sense in the widest sense, can be modelled as a resource in the Home2L suite.
+All resources are arranged in a common namespace, but driven and accessed in a completely dis- tribited way from any computer. They can be manipulated or read out using the library, which provides full network transparency and supports arbitrary concurrent accesses from any process on any machine anytime.
+Resources are manipulated by means of independent requests with individual attributes like priorities and time intervals. The user pushes a button to open the window blinds. One second later, a timer- triggered automatic rule tells the blinds to close. What should happen now? The request model allows to clearly specify priorities (e.g. user interaction in favor of automation rules) and to handle concurrency properly.
+The Home2L Shell is a powerful administration tool and allows to access resources and submit requests on the command line or by shell scripts.
+Both automation rules and resource drivers can also be part of a larger program. Any software linking against the Resources library can access resources or publish own run-time information as resources.
+
+WWW: https://github.com/gkiefer/home2l/
