@@ -10,9 +10,9 @@ COMMENT=	The Home2Ls - Smart Tools for a Private Home
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=  arm-none-eabi-gcc>0:devel/arm-none-eabi-gcc \
-                bash>0:shells/bash \
-                ##git>0:devel/git \
+BUILD_DEPENDS=  bash>0:shells/bash \
+                ##git-tiny>0:devel/git@tiny \
+                git>0:devel/git \
                 swig>0:devel/swig \
 	            readline>0:devel/readline \
                 sdl2>0:devel/sdl20 \
@@ -20,7 +20,8 @@ BUILD_DEPENDS=  arm-none-eabi-gcc>0:devel/arm-none-eabi-gcc \
                 GraphicsMagick>0:graphics/GraphicsMagick \
                 inkscape>0:graphics/inkscape \
                 avr-gcc>0:devel/avr-gcc \
-                avr-libc>0:devel/avr-libc
+                avr-libc>0:devel/avr-libc \
+                binutils>0:devel/avr-binutils
                 
 RUN_DEPENDS=	bash>0:shells/bash \
                 mosquitto>0:net/mosquitto \
@@ -42,7 +43,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	gkiefer
 GH_PROJECT=	${PORTNAME}
 
-MAKE_ENV=	
+MAKE_ENV=	ARCHS=amd64 MODS="resources brownies tools" INSTALL=/usr/local/home2l
 LDFLAGS+=	
 
 USERS=		home2l

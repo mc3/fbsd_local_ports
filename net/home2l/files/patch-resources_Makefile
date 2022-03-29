@@ -1,0 +1,24 @@
+--- resources/Makefile.orig	2022-03-28 13:26:07 UTC
++++ resources/Makefile
+@@ -153,16 +153,17 @@ endif
+ 
+ 
+ install-indep:
+-	install -Dp -m 755 -t $(HOME2L_INSTALL)/bin home2l-showhouse
++	install -p -m 755 home2l-showhouse $(HOME2L_INSTALL)/bin
+ 
+ install-arch:
+ 	BIN=$(HOME2L_INSTALL)/bin/$(ARCH);   \
+ 	LIB=$(HOME2L_INSTALL)/lib/$(ARCH);   \
+-	install -Dp $(STRIP) -m 755 -t $$BIN $(RCSHELL_BIN) $(SERVER_BIN); \
++	install -d $$BIN $$LIB; \
++	install -p -s -m 755 $(RCSHELL_BIN) $(SERVER_BIN) $$BIN; \
+ 	for CMD in list show follow get wait r+ request r- delrequest; do \
+ 	  ln -sf $(RCSHELL) $$BIN/home2l-$$CMD; \
+ 	done; \
+ 	if [[ "$(WITH_PYTHON)" == "1" ]]; then \
+-	  install -Dp $(STRIP) -m 644 -t $$LIB $(PYLIB_BIN);  \
+-	  install -Dp          -m 644 -t $$LIB $(DIR_OBJ)/$(PYLIB).py;  \
++	  install -p -s -m 644 $(PYLIB_BIN) $$LIB;  \
++	  install -p    -m 644 $(DIR_OBJ)/$(PYLIB).py $$LIB;  \
+ 	fi
