@@ -50,7 +50,4 @@ MAKE_ENV=	ARCHS=amd64 MODS="resources brownies tools" INSTALL=/usr/local/home2l
 USERS=		home2l
 GROUPS=		home2l
 
-##post-patch:     ${SHELL} -c ${CP} ${FILESDIR}/i2c-dev.h ${WRKSRC}/brownies/
-##    ##cp /usr/local/src/fbsd_local_ports/net/home2l/files/i2c-dev.h /var/ports/usr/local/src/fbsd_local_ports/net/home2l/work/home2l-1.0-12-gdf09/brownies
-
 .include <bsd.port.mk>
