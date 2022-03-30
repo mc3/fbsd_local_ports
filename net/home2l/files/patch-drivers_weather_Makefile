@@ -1,0 +1,10 @@
+--- drivers/weather/Makefile.orig	2022-03-30 17:15:43 UTC
++++ drivers/weather/Makefile
+@@ -45,4 +45,6 @@ clean:
+ 
+ 
+ install-indep:
+-	install -Dp -m 755 -t $(HOME2L_INSTALL)/lib $(SCRIPTS)
++	##install -Dp -m 755 -t $(HOME2L_INSTALL)/lib $(SCRIPTS)
++    install -d $(HOME2L_INSTALL)/lib; \
++    install -p $(STRIP) -m 755 $(SCRIPTS) $(HOME2L_INSTALL)/lib

@@ -1,0 +1,10 @@
+--- drivers/demo/Makefile.orig	2022-03-30 17:01:56 UTC
++++ drivers/demo/Makefile
+@@ -79,4 +79,6 @@ build-arch: $(DRIVER_BIN)
+ 
+ 
+ install-arch:
+-	install -Dp $(STRIP) -m 644 -t $(HOME2L_INSTALL)/lib/$(ARCH) $(DRIVER_BIN)
++	##install -Dp $(STRIP) -m 644 -t $(HOME2L_INSTALL)/lib/$(ARCH) $(DRIVER_BIN)
++    install -d $(HOME2L_INSTALL)/lib/$(ARCH); \
++    install -p $(STRIP) -m 644 $(DRIVER_BIN) $(HOME2L_INSTALL)/lib/$(ARCH)

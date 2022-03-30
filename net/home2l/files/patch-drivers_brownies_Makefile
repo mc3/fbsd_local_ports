@@ -1,0 +1,12 @@
+--- drivers/brownies/Makefile.orig	2022-03-30 16:57:27 UTC
++++ drivers/brownies/Makefile
+@@ -79,5 +79,8 @@ clean: clean-build
+ build-arch: $(DRIVER_BIN)
+ 
+ 
++
+ install-arch:
+-	install -Dp $(STRIP) -m 644 -t $(HOME2L_INSTALL)/lib/$(ARCH) $(DRIVER_BIN)
++	## install -Dp $(STRIP) -m 644 -t $(HOME2L_INSTALL)/lib/$(ARCH) $(DRIVER_BIN)
++    install -d $(HOME2L_INSTALL)/lib/$(ARCH); \
++    install -p $(STRIP) -m 644 $(DRIVER_BIN) $(HOME2L_INSTALL)/lib/$(ARCH)

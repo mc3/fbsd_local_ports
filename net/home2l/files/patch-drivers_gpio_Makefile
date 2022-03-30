@@ -1,0 +1,10 @@
+--- drivers/gpio/Makefile.orig	2022-03-30 17:07:44 UTC
++++ drivers/gpio/Makefile
+@@ -83,4 +83,6 @@ install-arch:
+ 
+ 
+ install-indep:
+-	install -Dp -m 755 -t $(HOME2L_INSTALL)/bin h2l-setup_gpio.sh
++	##install -Dp -m 755 -t $(HOME2L_INSTALL)/bin h2l-setup_gpio.sh
++    install -d $(HOME2L_INSTALL)/bin; \
++    install -p $(STRIP) -m 755 h2l-setup_gpio.sh $(HOME2L_INSTALL)/bin

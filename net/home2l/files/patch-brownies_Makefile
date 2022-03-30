@@ -1,6 +1,6 @@
---- brownies/Makefile.orig	2022-03-29 17:53:04 UTC
+--- brownies/Makefile.orig	2021-12-10 19:40:51 UTC
 +++ brownies/Makefile
-@@ -120,9 +120,13 @@ build-arch: $(BROWNIE2L_BIN)
+@@ -120,9 +120,11 @@ build-arch: $(BROWNIE2L_BIN)
  
  
  install-indep:
@@ -11,8 +11,7 @@
  
  install-arch:
  	BIN=$(HOME2L_INSTALL)/bin/$(ARCH);   \
- 	LIB=$(HOME2L_INSTALL)/lib/$(ARCH);   \
+-	LIB=$(HOME2L_INSTALL)/lib/$(ARCH);   \
 -	install -Dp $(STRIP) -m 755 -t $$BIN $(BROWNIE2L_BIN)
-+	##install -Dp $(STRIP) -m 755 -t $$BIN $(BROWNIE2L_BIN)
 +	install -d $$BIN; \
 +	install -p $(STRIP) -m 755 $(BROWNIE2L_BIN) $$BIN
