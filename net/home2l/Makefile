@@ -43,7 +43,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	gkiefer
 GH_PROJECT=	${PORTNAME}
 
-MAKE_ENV=	ARCHS=amd64 MODS="resources brownies tools" INSTALL=/usr/local/home2l
+MAKE_ENV=	ARCHS=amd64 MODS="resources brownies tools" WITH_PYTHON=1 INSTALL=/usr/local/home2l
 
 ##LDFLAGS+=	
 
