@@ -1,0 +1,22 @@
+--- tools/home2l-install.orig	2022-04-02 18:28:06 UTC
++++ tools/home2l-install
+@@ -21,7 +21,7 @@
+ # This is the working horse to update a Home2L installation on the local machine.
+ # It requires root privileges, and it is required that a line like
+ #
+-#  "<admin user name> ALL=NOPASSWD:/opt/home2l/bin/home2l-install"
++#  "<admin user name> ALL=NOPASSWD:/usr/local/home2l/bin/home2l-install"
+ #
+ # is added to /etc/sudoers.
+ #
+@@ -275,8 +275,8 @@ fi
+ # Fix ownership & permissions...
+ echo
+ echo "# Fixing permissions ..."
+-chmod 440 `find /opt/home2l/etc/secrets -type f` $HOME2L_ROOT/etc/secrets 2>/dev/null || echo "#   (no files found in '$HOME2L_ROOT/etc/secrets')"
+-chmod 550 `find /opt/home2l/etc/secrets -type d` $HOME2L_ROOT/etc/secrets 2>/dev/null || echo "#   ('$HOME2L_ROOT/etc/secrets' not found)"
++chmod 440 `find /usr/local/home2l/etc/secrets -type f` $HOME2L_ROOT/etc/secrets 2>/dev/null || echo "#   (no files found in '$HOME2L_ROOT/etc/secrets')"
++chmod 550 `find /usr/local/home2l/etc/secrets -type d` $HOME2L_ROOT/etc/secrets 2>/dev/null || echo "#   ('$HOME2L_ROOT/etc/secrets' not found)"
+ 
+ 
+ # Restart daemon (if active) and other house-keeping...
