@@ -14,6 +14,17 @@
  ARCH ?= $(HOST_ARCH)
  
  
+@@ -49,9 +49,9 @@ ARCH ?= $(HOST_ARCH)
+ DEBUG ?= 1
+ 
+ 
++WITH_USR_LOCAL ?= 0
+ 
+ 
+-
+ ######################### Build environment configuration ######################
+ 
+ 
 @@ -68,11 +68,12 @@ DEBUG ?= 1
  #   The Makefiles are tested with 'bash' as the standard shell.
  #   'dash' (the Debian default) does not work, since its integrated 'echo'
@@ -50,7 +61,18 @@
    endif
  endif
  ifndef CC
-@@ -208,6 +209,7 @@ endif
+@@ -175,6 +176,10 @@ CFLAGS := -MMD -g -Wall -pthread -I.
+   #  -DBUILD_OS=\"Debian\" -DBUILD_ARCH=\"$(ARCH)\"
+ LDFLAGS := -pthread
+ SRC :=
++ifeq ($(WITH_USR_LOCAL),1)
++CFLAGS += -I/usr/local/include
++LDLAGS += -L/usr/local/lib
++endif
+ 
+ 
+ # Release settings modifications ...
+@@ -208,6 +213,7 @@ endif
  #   To be tested again after the next Debian/GCC release.
  ifeq ($(ARCH),armhf)
  CFLAGS := $(filter-out -O%,$(CFLAGS))
