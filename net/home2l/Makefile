@@ -44,7 +44,8 @@ GH_ACCOUNT=	gkiefer
 GH_PROJECT=	${PORTNAME}
 
 MAKE_ENV=	ARCHS=amd64 MODS="resources brownies tools" WITH_PYTHON=1 \
-            WITH_READLINE=1 WITH_INSTALL=/usr/local/home2l WITH_USR_LOCAL=1
+            WITH_READLINE=1 WITH_INSTALL=${LOCALBASE}/home2l \
+            WITH_USR_LOCAL=1 HOME2L_BUILD=${WRKDIRPREFIX}
 
 ##LDFLAGS+=	
 

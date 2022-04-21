@@ -19,8 +19,9 @@
  
  
 +WITH_USR_LOCAL ?= 0
++LOCALBASE ?= ''     # must be set if WITH_USR_LOCAL is set
  
- 
+-
 -
  ######################### Build environment configuration ######################
  
@@ -61,17 +62,20 @@
    endif
  endif
  ifndef CC
-@@ -175,6 +176,10 @@ CFLAGS := -MMD -g -Wall -pthread -I.
+@@ -175,8 +176,12 @@ CFLAGS := -MMD -g -Wall -pthread -I.
    #  -DBUILD_OS=\"Debian\" -DBUILD_ARCH=\"$(ARCH)\"
  LDFLAGS := -pthread
  SRC :=
 +ifeq ($(WITH_USR_LOCAL),1)
-+CFLAGS += -I/usr/local/include
-+LDLAGS += -L/usr/local/lib
++CFLAGS += -I$(LOCALBASE)/include
++LDLAGS += -L$(LOCALBASE)/lib
 +endif
++ 
  
- 
+-
  # Release settings modifications ...
+ ifeq ($(DEBUG),0)       # Optimize for speed, but do not sacrifice code size too much
+ CFLAGS += -O2
 @@ -208,6 +213,7 @@ endif
  #   To be tested again after the next Debian/GCC release.
  ifeq ($(ARCH),armhf)
