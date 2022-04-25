@@ -1,6 +1,22 @@
 --- tools/Makefile.orig	2021-12-10 19:40:51 UTC
 +++ tools/Makefile
-@@ -97,16 +97,23 @@ build-arch: $(DAEMON_BIN)
+@@ -82,6 +82,15 @@ etc/floorplan.fpo:
+ 
+ 
+ 
++############################## config examples ###################################
++
++
++EXAMPLES := etc/androidb.conf etc/home2l.conf etc/install.conf etc/resources.conf \
++            etc/rules-showhouse etc/wakeupcall etc/brownies.conf etc/init.conf \
++            etc/mpd-showstage.conf etc/rollout.conf
++
++
++
+ ############################## Build system targets ############################
+ 
+ 
+@@ -97,16 +106,27 @@ build-arch: $(DAEMON_BIN)
  
  install-indep:
  	@echo "Creating "$(HOME2L_INSTALL)"/VERSION..."; echo "Home2l "$(BUILD_VERSION)" "$(BUILD_DATE) > $(HOME2L_INSTALL)/VERSION; chmod 644 $(HOME2L_INSTALL)/VERSION
@@ -8,7 +24,9 @@
 -	install -Dp -m 644 -t $(HOME2L_INSTALL) env.sh README
 -	install -Dp -m 755 -t $(HOME2L_INSTALL)/install $(INITD)
 -	install -Dp -m 755 -t $(HOME2L_INSTALL)/bin h2l-mkdir.sh
-+	install -d $(HOME2L_INSTALL)/bin $(HOME2L_INSTALL)/install $(HOME2L_INSTALL)/etc
++	install -d $(HOME2L_INSTALL)/bin $(HOME2L_INSTALL)/install \
++	           $(HOME2L_INSTALL)/etc $(HOME2L_INSTALL)/share/examples \
++	           $(HOME2L_INSTALL)/share/examples/secrets
 +	##install -Dp -m 755 -t $(HOME2L_INSTALL)/bin $(SCRIPTS)
 +	install -p -m 755 $(SCRIPTS) $(HOME2L_INSTALL)/bin
 +	##install -Dp -m 644 -t $(HOME2L_INSTALL) env.sh README
@@ -17,6 +35,9 @@
 +	install -p -m 755 $(INITD) $(HOME2L_INSTALL)/install
 +	##install -Dp -m 755 -t $(HOME2L_INSTALL)/bin h2l-mkdir.sh
 +	install -p -m 755 h2l-mkdir.sh $(HOME2L_INSTALL)/bin
++	install -p -m 644 $(EXAMPLES) $(HOME2L_INSTALL)/share/examples
++	install -p -m 644 etc/secrets/home2l-secrets.conf \
++	  $(HOME2L_INSTALL)/share/examples/secrets
  	if [ ! -e $(HOME2L_INSTALL)/etc ]; then \
 -	  find etc/ -type f -exec install -Dpm 644 "{}" "$(HOME2L_INSTALL)/{}" \; ; \
 +	  ##find etc/ -type f -exec install -Dpm 644 "{}" "$(HOME2L_INSTALL)/{}" \; ; \
@@ -24,7 +45,7 @@
  	  chmod a+x $(HOME2L_INSTALL)/etc/rules-* ; \
  	fi
  
- 
+-
  install-arch:
 -	BIN=$(HOME2L_INSTALL)/bin/$(ARCH);   \
 -	install -Dp $(STRIP) -m 755 -t $$BIN $(DAEMON_BIN);   \

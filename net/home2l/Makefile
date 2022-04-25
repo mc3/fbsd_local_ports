@@ -37,18 +37,23 @@ USES=		compiler:c++11-lang gmake gettext python:3.9 \
             gettext-tools shebangfix
 
 SHEBANG_GLOB=	*.sh *.py home2l-drv-weather check_pdf_links \
-                home2l-showhouse home2l-fpc
+                home2l-showhouse home2l-fpc \
+                home2l home2l-adb home2l-demo home2l-install \
+                home2l-rollout home2l-sudo 
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	gkiefer
 GH_PROJECT=	${PORTNAME}
 
-MAKE_ENV=	ARCHS=amd64 MODS="resources brownies tools" WITH_PYTHON=1 \
-            WITH_READLINE=1 WITH_INSTALL=${LOCALBASE}/home2l \
+MAKE_ENV=	ARCHS=${ARCH} MODS="resources brownies tools" WITH_PYTHON=1 \
+            WITH_READLINE=1 WITH_INSTALL=${STAGEDIR}/home2l \
             WITH_USR_LOCAL=1 HOME2L_BUILD=${WRKDIRPREFIX}
 
 ##LDFLAGS+=	
 
+pre-build: \
+            @${MKDIR} ${STAGEDIR}${LOCALBASE}/home2l
+            
 USERS=		home2l
 GROUPS=		home2l
 
