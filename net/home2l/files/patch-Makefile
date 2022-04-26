@@ -1,4 +1,4 @@
---- Makefile.orig	2022-03-23 17:36:11 UTC
+--- Makefile.orig	2021-12-10 19:40:51 UTC
 +++ Makefile
 @@ -26,15 +26,19 @@
  
@@ -23,3 +23,27 @@
  endif
  
  
+@@ -136,6 +140,7 @@ endif
+ ifdef PREFIX
+ HOME2L_INSTALL := $(PREFIX)
+ endif
++HOME2L_INSTALL := $(STAGE_INSTALL)
+ 
+ 
+ # Report to sub-makes that they are called from the main build system ...
+@@ -148,7 +153,6 @@ include Setup.mk
+ 
+ 
+ 
+-
+ ############################## Help ############################################
+ 
+ 
+@@ -268,6 +272,7 @@ export BUILD_VERSION := $(BUILD_VERSION)
+ #     3. It is now (unnecessarily) re-compiled, leading to an unnecessary re-linking
+ 
+ build:
++	@echo "HOME2L_INSTALL is $(HOME2L_INSTALL)"
+ 	@for A in $(ARCHS); do \
+ 	  for P in $(MODS) $(PREP_DRVS); do \
+ 	    mkdir -p $(HOME2L_BUILD)/$$A/$$P; \

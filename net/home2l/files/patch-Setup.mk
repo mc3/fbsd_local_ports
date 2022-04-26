@@ -5,7 +5,7 @@
  
  # Installation directory ...
 -HOME2L_INSTALL ?= /opt/home2l
-+HOME2L_INSTALL = /usr/local/home2l
++HOME2L_INSTALL := $(STAGE_INSTALL)
  
  
  # Host and target architecture...

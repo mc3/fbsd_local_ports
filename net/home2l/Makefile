@@ -46,13 +46,11 @@ GH_ACCOUNT=	gkiefer
 GH_PROJECT=	${PORTNAME}
 
 MAKE_ENV=	ARCHS=${ARCH} MODS="resources brownies tools" WITH_PYTHON=1 \
-            WITH_READLINE=1 WITH_INSTALL=${STAGEDIR}/home2l \
+            WITH_READLINE=1 STAGE_INSTALL=$(STAGEDIR)${PREFIX}/home2l \
             WITH_USR_LOCAL=1 HOME2L_BUILD=${WRKDIRPREFIX}
 
 ##LDFLAGS+=	
 
-pre-build: \
-            @${MKDIR} ${STAGEDIR}${LOCALBASE}/home2l
             
 USERS=		home2l
 GROUPS=		home2l
