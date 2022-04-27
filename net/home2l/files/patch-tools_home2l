@@ -1,0 +1,11 @@
+--- tools/home2l.orig	2022-04-27 16:07:33 UTC
++++ tools/home2l
+@@ -27,7 +27,7 @@
+ 
+ 
+ # Directories searched for a Home2l installation (adapt if necessary)...
+-INSTALL_DIRS="/opt/home2l /data/home2l /usr/local/share"
++INSTALL_DIRS="/usr/local/home2l /opt/home2l /data/home2l /usr/local/share"
+ 
+ 
+ if [[ "$1" == "" ]]; then

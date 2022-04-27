@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+# ntpd because that is very laste
+# PROVIDE: home2l
+# REQUIRE:
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# home2l_enable  (bool):  Set to NO by default.
+#               Set it to YES to enable home2l.
+# home2l_flags (params):  Set params used to start home2l.
+#
+
+. /etc/rc.subr
+. /usr/local/home2l/env.sh
+
+name="home2l"
+rcvar=${name}_enable
+
+command=/usr/local/home2l/bin/amd64/home2l-daemon
+
+load_rc_config $name
+
+: ${home2l_enable="NO"}
+: ${home2l_flags=""}
+
+: ${home2l_pidfile="/var/run/home2l.pid"}
+
+export HOME2L_CONF="daemon.pidFile=$home2l_pidfile sys.syslog=1 debug=0"
+
+meteoavg_prestart() {
+    mkdir -m 775 ${HOME2L_ROOT}/tmp || /usr/bin/true
+    chown home2l:home2l ${HOME2L_ROOT}/tmp
+    
+    # Start ADB if selected so and ADB not already running ...
+        if [[ "$START_ADB" == "1" ]]; then
+          su home2l -c "adb start-server" > /dev/null
+        fi
+}
+
+
+run_rc_command "$1"
