@@ -1,4 +1,4 @@
---- drivers/mqtt/Makefile.orig	2022-03-30 17:14:34 UTC
+--- drivers/mqtt/Makefile.orig	2021-12-10 19:40:51 UTC
 +++ drivers/mqtt/Makefile
 @@ -81,4 +81,6 @@ build-arch: $(DRIVER_BIN)
  
@@ -6,5 +6,5 @@
  install-arch:
 -	install -Dp $(STRIP) -m 644 -t $(HOME2L_INSTALL)/lib/$(ARCH) $(DRIVER_BIN)
 +	##install -Dp $(STRIP) -m 644 -t $(HOME2L_INSTALL)/lib/$(ARCH) $(DRIVER_BIN)
-+    install -d $(HOME2L_INSTALL)/lib/$(ARCH); \
-+    install -p $(STRIP) -m 644 $(DRIVER_BIN) $(HOME2L_INSTALL)/lib/$(ARCH)
++	install -d $(HOME2L_INSTALL)/lib/$(ARCH); \
++	install -p $(STRIP) -m 644 $(DRIVER_BIN) $(HOME2L_INSTALL)/lib/$(ARCH)

@@ -1,4 +1,4 @@
---- tools/env.sh.orig	2022-04-21 17:30:43 UTC
+--- tools/env.sh.orig	2022-04-27 10:27:57 UTC
 +++ tools/env.sh
 @@ -1,16 +1,18 @@
 +#!/usr/local/bin/bash
@@ -10,7 +10,7 @@
  
  # HOME2L_ROOT ...
 -export HOME2L_ROOT=`realpath \`dirname $BASH_SOURCE\``
-+export HOME2L_ROOT="$(LOCALBASE)/home2l"
++export HOME2L_ROOT="/usr/local/home2l"
  
  # Architecture (for arch-dependent paths)...
 -export HOME2L_ARCH=`dpkg --print-architecture`

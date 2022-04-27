@@ -1,4 +1,4 @@
---- drivers/enocean/Makefile.orig	2022-03-30 17:03:10 UTC
+--- drivers/enocean/Makefile.orig	2021-12-10 19:40:51 UTC
 +++ drivers/enocean/Makefile
 @@ -100,5 +100,8 @@ build-arch: $(DRIVER_BIN) $(TOOL_BIN)
  install-arch:
@@ -8,6 +8,6 @@
 -	install -Dp $(STRIP) -m 755 -t $$BIN $(TOOL_BIN)
 +	##install -Dp $(STRIP) -m 644 -t $$LIB $(DRIVER_BIN); \
 +	##install -Dp $(STRIP) -m 755 -t $$BIN $(TOOL_BIN); \
-+    install -d $$LIB $$BIN; \
-+    install -p $(STRIP) -m 644 $(DRIVER_BIN) $$LIB; \
-+    install -p $(STRIP) -m 755 $(TOOL_BIN) $$BIN
++	install -d $$LIB $$BIN; \
++	install -p $(STRIP) -m 644 $(DRIVER_BIN) $$LIB; \
++	install -p $(STRIP) -m 755 $(TOOL_BIN) $$BIN

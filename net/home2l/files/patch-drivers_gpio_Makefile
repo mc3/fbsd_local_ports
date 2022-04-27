@@ -1,10 +1,16 @@
---- drivers/gpio/Makefile.orig	2022-03-30 17:07:44 UTC
+--- drivers/gpio/Makefile.orig	2021-12-10 19:40:51 UTC
 +++ drivers/gpio/Makefile
-@@ -83,4 +83,6 @@ install-arch:
+@@ -79,8 +79,11 @@ build-arch: $(DRIVER_BIN)
+ 
+ 
+ install-arch:
+-	install -Dp $(STRIP) -m 644 -t $(HOME2L_INSTALL)/lib/$(ARCH) $(DRIVER_BIN)
++	install -d $(HOME2L_INSTALL)/lib/$(ARCH); \
++	install -p $(STRIP) -m 644 $(DRIVER_BIN) $(HOME2L_INSTALL)/lib/$(ARCH)
  
  
  install-indep:
 -	install -Dp -m 755 -t $(HOME2L_INSTALL)/bin h2l-setup_gpio.sh
 +	##install -Dp -m 755 -t $(HOME2L_INSTALL)/bin h2l-setup_gpio.sh
-+    install -d $(HOME2L_INSTALL)/bin; \
-+    install -p $(STRIP) -m 755 h2l-setup_gpio.sh $(HOME2L_INSTALL)/bin
++	install -d $(HOME2L_INSTALL)/bin; \
++	install -p -m 755 h2l-setup_gpio.sh $(HOME2L_INSTALL)/bin

@@ -29,7 +29,7 @@
 +	           $(HOME2L_INSTALL)/share/examples/secrets
 +	##install -Dp -m 755 -t $(HOME2L_INSTALL)/bin $(SCRIPTS)
 +	install -p -m 755 $(SCRIPTS) $(HOME2L_INSTALL)/bin
-+	##install -Dp -m 644 -t $(HOME2L_INSTALL) env.sh README
++	##install -Dp -m 755 -t $(HOME2L_INSTALL) env.sh README
 +	install -p -m 644 env.sh README $(HOME2L_INSTALL)
 +	##install -Dp -m 755 -t $(HOME2L_INSTALL)/install $(INITD)
 +	install -p -m 755 $(INITD) $(HOME2L_INSTALL)/install
