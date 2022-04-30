@@ -20,6 +20,7 @@ name="home2l"
 rcvar=${name}_enable
 
 command=/usr/local/home2l/bin/amd64/home2l-daemon
+start_precmd="home2l_prestart"
 
 load_rc_config $name
 
@@ -28,16 +29,16 @@ load_rc_config $name
 
 : ${home2l_pidfile="/var/run/home2l.pid"}
 
-export HOME2L_CONF="daemon.pidFile=$home2l_pidfile sys.syslog=1 debug=0"
+export HOME2L_CONF="daemon.pidFile=$home2l_pidfile sys.syslog=1 debug=1"
 
-meteoavg_prestart() {
-    mkdir -m 775 ${HOME2L_ROOT}/tmp || /usr/bin/true
-    chown home2l:home2l ${HOME2L_ROOT}/tmp
+home2l_prestart() {
+    mkdir -p -m 775 ${HOME2L_ROOT}/tmp || /usr/bin/true
+    chown home2l:home2l /dev/cuaU0*
+    chown home2l:home2l ${HOME2L_ROOT} ${HOME2L_ROOT}/tmp
     
     # Start ADB if selected so and ADB not already running ...
-        if [[ "$START_ADB" == "1" ]]; then
-          su home2l -c "adb start-server" > /dev/null
-        fi
+    # Android features to be ported
+    ## su home2l -c "adb start-server" > /dev/null
 }
 
 

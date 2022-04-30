@@ -45,16 +45,20 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	gkiefer
 GH_PROJECT=	${PORTNAME}
 
-MAKE_ENV=	CFG=demo ARCHS=${ARCH} MODS="resources brownies tools" WITH_PYTHON=1 \
-            WITH_READLINE=1 STAGE_INSTALL=${PREFIX}/home2l \
-            WITH_USR_LOCAL=1 HOME2L_BUILD=${WRKDIRPREFIX}
-
-##LDFLAGS+=	
+USE_RC_SUBR=    home2l
 
 post-install: \
             ${MKDIR} ${STAGEDIR}$/home2l
             
+
+PREFIX=${LOCALBASE}/home2l
+
+MAKE_ENV=	CFG=demo ARCHS=${ARCH} MODS="resources brownies tools" WITH_PYTHON=1 \
+            WITH_READLINE=1 STAGE_INSTALL=${PREFIX} \
+            WITH_USR_LOCAL=1 HOME2L_FREEBSD_BUILD=${WRKDIRPREFIX}${.CURDIR}/work
+
 USERS=		home2l
 GROUPS=		home2l
 
 .include <bsd.port.mk>
+

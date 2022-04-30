@@ -1,6 +1,13 @@
 --- Setup.mk.orig	2021-12-10 19:40:51 UTC
 +++ Setup.mk
-@@ -31,11 +31,11 @@ HOME2L_BUILD ?= /tmp/home2l-build
+@@ -27,15 +27,17 @@
+ 
+ 
+ # Build directory...
+-HOME2L_BUILD ?= /tmp/home2l-build
++##HOME2L_BUILD ?= /tmp/home2l-build
++## FreeBSD
++HOME2L_BUILD := $(HOME2L_FREEBSD_BUILD)
  
  
  # Installation directory ...
@@ -14,7 +21,7 @@
  ARCH ?= $(HOST_ARCH)
  
  
-@@ -49,9 +49,9 @@ ARCH ?= $(HOST_ARCH)
+@@ -49,9 +51,9 @@ ARCH ?= $(HOST_ARCH)
  DEBUG ?= 1
  
  
@@ -26,7 +33,7 @@
  ######################### Build environment configuration ######################
  
  
-@@ -68,11 +68,12 @@ DEBUG ?= 1
+@@ -68,11 +70,12 @@ DEBUG ?= 1
  #   The Makefiles are tested with 'bash' as the standard shell.
  #   'dash' (the Debian default) does not work, since its integrated 'echo'
  #   command does not support the '-e' option.
@@ -42,7 +49,7 @@
  
  
  # C/C++ Compiler & strip option for 'install'...
-@@ -87,7 +88,7 @@ PYTHON_INCLUDE := /usr/include/python3.9
+@@ -87,7 +90,7 @@ PYTHON_INCLUDE := /usr/include/python3.9
  # 'STRIP' is the option passed to 'install(1)' to strip binaries during installation.
  #
  ifeq ($(ARCH),$(HOST_ARCH))
@@ -51,7 +58,7 @@
    STRIP := -s
  else
    ifeq ($(ARCH),amd64)
-@@ -121,8 +122,8 @@ else
+@@ -121,8 +124,8 @@ else
      #       'deb http://emdebian.org/tools/debian/ jessie main'.
      # Note [2017-07-22]: The option '-static-libstdc++' is added for armhf to create
      #       binaries with the chance to run under both Debian Jessie and Debian Stretch.
@@ -62,7 +69,7 @@
    endif
  endif
  ifndef CC
-@@ -175,8 +176,12 @@ CFLAGS := -MMD -g -Wall -pthread -I.
+@@ -175,8 +178,12 @@ CFLAGS := -MMD -g -Wall -pthread -I.
    #  -DBUILD_OS=\"Debian\" -DBUILD_ARCH=\"$(ARCH)\"
  LDFLAGS := -pthread
  SRC :=
@@ -76,11 +83,21 @@
  # Release settings modifications ...
  ifeq ($(DEBUG),0)       # Optimize for speed, but do not sacrifice code size too much
  CFLAGS += -O2
-@@ -208,6 +213,7 @@ endif
+@@ -208,6 +215,7 @@ endif
  #   To be tested again after the next Debian/GCC release.
  ifeq ($(ARCH),armhf)
  CFLAGS := $(filter-out -O%,$(CFLAGS))
 +CFLAGS := $(filter-out -pthread,$(CFLAGS))
  endif
  
+ 
+@@ -220,7 +228,8 @@ endif
+ 
+ # Version ...
+ ifeq ($(BUILD_VERSION),)
+-BUILD_VERSION := $(shell git describe --tags --long --dirty='*' --abbrev=4 --always 2>/dev/null || echo dev)
++##BUILD_VERSION := $(shell git describe --tags --long --dirty='*' --abbrev=4 --always 2>/dev/null || echo dev)
++BUILD_VERSION := "1.0.24"
+ endif
+ BUILD_DATE := $(shell date +%Y-%m-%d)
  
