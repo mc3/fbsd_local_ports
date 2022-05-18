@@ -91,13 +91,12 @@
  endif
  
  
-@@ -220,7 +228,8 @@ endif
+@@ -220,7 +228,7 @@ endif
  
  # Version ...
  ifeq ($(BUILD_VERSION),)
 -BUILD_VERSION := $(shell git describe --tags --long --dirty='*' --abbrev=4 --always 2>/dev/null || echo dev)
 +##BUILD_VERSION := $(shell git describe --tags --long --dirty='*' --abbrev=4 --always 2>/dev/null || echo dev)
-+BUILD_VERSION := "1.0.24"
  endif
  BUILD_DATE := $(shell date +%Y-%m-%d)
  

@@ -1,0 +1,39 @@
+--- wallclock/Makefile.orig	2022-05-11 15:28:58 UTC
++++ wallclock/Makefile
+@@ -360,7 +360,8 @@ build-arch: $(WALLCLOCK_BIN)
+ 
+ install-arch:
+ 	BIN=$(HOME2L_INSTALL)/bin/$(ARCH);   \
+-	install -Dps -m 755 -t $$BIN $(WALLCLOCK_BIN);
++	install -d $$BIN; \
++	install -ps -m 755 $(WALLCLOCK_BIN) $$BIN;
+ 
+ endif
+ 
+@@ -372,15 +373,19 @@ endif
+ 
+ 
+ install-indep:
+-	install -Dp -m 755 -t $(HOME2L_INSTALL)/bin home2l-fpc; \
+-	install -Dp -m 755 -t $(HOME2L_INSTALL)/bin h2l-sysinfo.sh; \
++	install -d $(HOME2L_INSTALL)/bin $(HOME2L_INSTALL)/share/icons \
++	           $(HOME2L_INSTALL)/share/fonts $(HOME2L_INSTALL)/share/sounds \
++	           $(HOME2L_INSTALL)/share/home2l.png; \
++	install -p -m 755 home2l-fpc $(HOME2L_INSTALL)/bin; \
++	install -p -m 755 h2l-sysinfo.sh $(HOME2L_INSTALL)/bin; \
+ 	if [[ "$(WITH_ANDROID)" == "1" ]]; then \
+-	  install -Dp -m 644 $(APK) $(HOME2L_INSTALL)/install/Home2lApp.apk; \
++	  install -d $(APK); \
++	  install -p -m 644 $(HOME2L_INSTALL)/install/Home2lApp.apk $(APK); \
+ 	fi; \
+-	install -Dp -m 644 -t $(HOME2L_INSTALL)/share/icons icons.build/*.bmp; \
+-	install -Dp -m 644 -t $(HOME2L_INSTALL)/share/fonts fonts/*.ttf; \
+-	install -Dp -m 644 -t $(HOME2L_INSTALL)/share/sounds sounds/*.wav; \
+-	install -Dp -m 644 -T icons/home2l-desktop.png $(HOME2L_INSTALL)/share/home2l.png; \
++	install -p -m 644 icons.build/*.bmp $(HOME2L_INSTALL)/share/icons; \
++	install -p -m 644 fonts/*.ttf $(HOME2L_INSTALL)/share/fonts; \
++	install -p -m 644 sounds/*.wav $(HOME2L_INSTALL)/share/sounds; \
++	install -p -m 644 $(HOME2L_INSTALL)/share/home2l.png icons/home2l-desktop.png; \
+ 	echo -e "[Desktop Entry]\n" \
+ 	        "Name=Home2L\n" \
+ 	        "Comment=The Home2L WallClock\n" \
