@@ -1,7 +1,7 @@
 PORTNAME=	home2l
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.0
-DISTVERSIONSUFFIX=	-12-gdf09
+DISTVERSION=	1.2
+DISTVERSIONSUFFIX=	-c458e5
 CATEGORIES=	net
 
 MAINTAINER=	axel.rau@chaos1.de
@@ -41,10 +41,11 @@ SHEBANG_GLOB=	*.sh *.py home2l-drv-weather check_pdf_links \
                 home2l home2l-adb home2l-demo home2l-install \
                 home2l-rollout home2l-sudo 
 
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	gkiefer
 GH_PROJECT=	${PORTNAME}
-
+GH_TAGNAME= c458e557bc3f575d9ff3e1ac049adc4ec4ea7525
 USE_RC_SUBR=    home2l
 
 post-install: \
