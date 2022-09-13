@@ -58,7 +58,7 @@ MAKE_ENV=	CFG=demo ARCHS=${ARCH} WITH_PYTHON=1 \
             MODS="tools resources brownies locales" \
             WITH_READLINE=1 STAGE_INSTALL=${PREFIX} \
             WITH_USR_LOCAL=1 HOME2L_FREEBSD_BUILD=${WRKDIRPREFIX}${.CURDIR}/work \
-            BUILD_VERSION=1.1-199
+            BUILD_VERSION=1.2
 
 
 USERS=		home2l

@@ -1,6 +1,6 @@
---- common/base.C.orig	2021-12-10 19:40:51 UTC
+--- common/base.C.orig	2022-08-31 21:42:24 UTC
 +++ common/base.C
-@@ -2856,12 +2856,12 @@ bool CShellBare::Start (const char *cmd, bool readStdE
+@@ -2865,12 +2865,12 @@ bool CShellBare::Start (const char *cmd, bool readStdE
      }
  #else
      if (host.IsEmpty ())

@@ -1,4 +1,4 @@
---- Setup.mk.orig	2021-12-10 19:40:51 UTC
+--- Setup.mk.orig	2022-08-31 21:42:24 UTC
 +++ Setup.mk
 @@ -27,15 +27,17 @@
  
@@ -54,10 +54,28 @@
  #
  ifeq ($(ARCH),$(HOST_ARCH))
 -  CC := g++ -no-pie
-+  CC := g++ -no-pie -lexecinfo
++  CC := c++ -no-pie -lexecinfo
    STRIP := -s
  else
    ifeq ($(ARCH),amd64)
+@@ -103,7 +106,7 @@ else
+     #       'g++-8-multilib' has been installed manually. The same holds for
+     #       compiling 'i386' binaries on an 'amd64' machine.
+     ifeq ($(HOST_ARCH),i386)
+-      CC := g++ -m64 -no-pie
++      CC := c++ -m64 -no-pie
+       STRIP := -s
+     endif
+   endif
+@@ -111,7 +114,7 @@ else
+     # Note: Cross-building for 'i386' on 'amd64' works after installing
+     #       'g++-10-multilib' (see comments above).
+     ifeq ($(HOST_ARCH),amd64)
+-      CC := g++ -m32 -no-pie
++      CC := c++ -m32 -no-pie
+       STRIP := -s
+     endif
+   endif
 @@ -121,8 +124,8 @@ else
      #       'deb http://emdebian.org/tools/debian/ jessie main'.
      # Note [2017-07-22]: The option '-static-libstdc++' is added for armhf to create
