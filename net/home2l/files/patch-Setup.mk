@@ -93,7 +93,7 @@
  SRC :=
 +ifeq ($(WITH_USR_LOCAL),1)
 +CFLAGS += -I$(LOCALBASE)/include
-+LDLAGS += -L$(LOCALBASE)/lib
++LDFLAGS += -L$(LOCALBASE)/lib
 +endif
 + 
  
