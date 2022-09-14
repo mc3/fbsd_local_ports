@@ -48,9 +48,12 @@ GH_PROJECT=	${PORTNAME}
 GH_TAGNAME= c458e557bc3f575d9ff3e1ac049adc4ec4ea7525
 USE_RC_SUBR=    home2l
 
-post-install: \
-            ${MKDIR} ${STAGEDIR}$/home2l
-            
+post-extract: 
+			${SH} ${PATCHDIR}/home2l_packages.sh
+
+post-install:
+			${MKDIR} ${STAGEDIR}$/home2l
+
 
 PREFIX=${LOCALBASE}/home2l
 
