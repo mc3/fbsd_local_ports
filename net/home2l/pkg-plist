@@ -25,6 +25,7 @@ home2l/env.sh
 home2l/install/initd-home2l
 home2l/lib/amd64/_home2l.so
 home2l/lib/amd64/home2l.py
+home2l/locale/de_DE/LC_MESSAGES/de.mo
 home2l/share/brownies/ahub.t85.elf
 home2l/share/brownies/bhub.t85.elf
 home2l/share/brownies/garage.t861.elf
