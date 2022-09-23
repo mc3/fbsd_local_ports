@@ -1,12 +1,12 @@
 PORTNAME=		home2l
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.2
-DISTVERSIONSUFFIX=	-c458e5
+DISTVERSIONSUFFIX=	-17ae44
 CATEGORIES= 	net
 
 MAINTAINER=		axel.rau@chaos1.de
 COMMENT=		Home2Ls - Smart Tools for a Private Home
-WWW=			https://github.com/gkiefer/home2l/
+WWW=			https://github.com/mc3/home2l/
 
 LICENSE=		GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -34,7 +34,7 @@ BUILD_DEPENDS=	bash>0:shells/bash \
 					binutils>0:devel/avr-binutils
 
 
-USES=		compiler:c++11-lang gmake gettext python:3.9 \
+USES=		gmake gettext python:3.9 \
 			gettext-tools shebangfix
 
 SHEBANG_GLOB=	*.sh *.py home2l-drv-weather check_pdf_links \
@@ -43,9 +43,9 @@ SHEBANG_GLOB=	*.sh *.py home2l-drv-weather check_pdf_links \
 				home2l-rollout home2l-sudo
 
 USE_GITHUB= yes
-GH_ACCOUNT= gkiefer
+GH_ACCOUNT= mc3
 GH_PROJECT= ${PORTNAME}
-GH_TAGNAME= c458e557bc3f575d9ff3e1ac049adc4ec4ea7525
+GH_TAGNAME= 17ae443fcd1e421241c03d33fee0197aaa66f06f
 USE_RC_SUBR=	home2l
 
 post-extract:
@@ -60,7 +60,7 @@ MAKE_ENV=	CFG=demo ARCHS=${ARCH} WITH_PYTHON=1 \
 			MODS="tools resources brownies locales" \
 			WITH_READLINE=1 STAGE_INSTALL=${PREFIX} \
 			WITH_USR_LOCAL=1 HOME2L_FREEBSD_BUILD=${WRKDIRPREFIX}${.CURDIR}/work \
-			BUILD_VERSION=1.2
+			BUILD_VERSION=1.2-0
 
 USERS=		home2l
 GROUPS=		home2l
