@@ -1,7 +1,7 @@
 PORTNAME=		home2l
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.2
-DISTVERSIONSUFFIX=	-0
+DISTVERSIONSUFFIX=	-1
 CATEGORIES= 	net
 
 MAINTAINER=		axel.rau@chaos1.de
@@ -29,6 +29,7 @@ BUILD_DEPENDS=	bash>0:shells/bash \
 					sdl2_ttf>0:graphics/sdl2_ttf \
 					GraphicsMagick>0:graphics/GraphicsMagick \
 					inkscape>0:graphics/inkscape \
+					optipng>0:graphics/optipng \
 					avr-gcc>0:devel/avr-gcc \
 					avr-libc>0:devel/avr-libc \
 					binutils>0:devel/avr-binutils
@@ -45,7 +46,7 @@ SHEBANG_GLOB=	*.sh *.py home2l-drv-weather check_pdf_links \
 USE_GITHUB= yes
 GH_ACCOUNT= mc3
 GH_PROJECT= ${PORTNAME}
-GH_TAGNAME= bda5596184537d87eb7bb10ecf15267b00e16998
+GH_TAGNAME= 2d93849fb73771827d6a08277e36778991df6855
 USE_RC_SUBR=	home2l
 
 post-extract:
@@ -56,11 +57,11 @@ post-install:
 
 PREFIX=${LOCALBASE}/home2l
 
-MAKE_ENV=	CFG=demo ARCHS=${ARCH} WITH_PYTHON=1 \
+MAKE_ENV=	CFG=basic ARCHS=${ARCH} WITH_PYTHON=1 \
 			MODS="tools resources brownies locales" \
 			WITH_READLINE=1 STAGE_INSTALL=${PREFIX} \
 			WITH_USR_LOCAL=1 HOME2L_FREEBSD_BUILD=${WRKDIRPREFIX}${.CURDIR}/work \
-			BUILD_VERSION=1.2-0
+			BUILD_VERSION="1.2-1"
 
 USERS=		home2l
 GROUPS=		home2l
