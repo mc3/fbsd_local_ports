@@ -1,21 +1,19 @@
 --- tools/Makefile.orig	2023-04-15 13:42:46 UTC
 +++ tools/Makefile
-@@ -74,14 +74,23 @@ INITD := initd-home2l
+@@ -74,7 +74,6 @@ INITD := initd-home2l
  
  ############################## etc/floorplan ###################################
  
-+## No floorplan for now
-+##etc/floorplan.fpo:
-+##	$(HOME2L_SRC)/wallclock/home2l-fpc etc/floorplan.svg
+-
+ etc/floorplan.fpo:
+ 	$(HOME2L_SRC)/wallclock/home2l-fpc etc/floorplan.svg
  
--etc/floorplan.fpo:
--	$(HOME2L_SRC)/wallclock/home2l-fpc etc/floorplan.svg
- 
+@@ -82,6 +81,15 @@ etc/floorplan.fpo:
  
  
  
 +############################## config examples ###################################
- 
++
 +
 +EXAMPLES := etc/androidb.conf etc/home2l.conf etc/install.conf etc/resources.conf \
 +            etc/rules-showhouse etc/wakeupcall etc/brownies.conf etc/init.conf \
@@ -26,17 +24,7 @@
  ############################## Build system targets ############################
  
  
-@@ -89,7 +98,8 @@ clean: clean-build
- 	rm -fr etc/floorplan.fpo
- 
- 
--build-indep: etc/floorplan.fpo
-+## No floorplan for now
-+build-indep: ##etc/floorplan.fpo
- 
- 
- build-arch: $(DAEMON_BIN)
-@@ -97,16 +107,27 @@ build-arch: $(DAEMON_BIN)
+@@ -97,16 +105,27 @@ build-arch: $(DAEMON_BIN)
  
  install-indep:
  	@echo "Creating "$(HOME2L_INSTALL)"/VERSION..."; echo "Home2l "$(BUILD_VERSION)" "$(BUILD_DATE) > $(HOME2L_INSTALL)/VERSION; chmod 644 $(HOME2L_INSTALL)/VERSION
