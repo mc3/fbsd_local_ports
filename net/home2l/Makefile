@@ -32,7 +32,8 @@ BUILD_DEPENDS=	bash>0:shells/bash \
 					optipng>0:graphics/optipng \
 					avr-gcc>0:devel/avr-gcc \
 					avr-libc>0:devel/avr-libc \
-					binutils>0:devel/avr-binutils
+					binutils>0:devel/avr-binutils \
+					${PYTHON_PKGNAMEPREFIX}psycopg>0:databases/py-psycopg@${PY_FLAVOR}
 
 USES=		gmake gettext-runtime python:3.9 \
 			gettext-tools shebangfix
