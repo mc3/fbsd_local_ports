@@ -34,7 +34,7 @@ BUILD_DEPENDS=	bash>0:shells/bash \
 					avr-libc>0:devel/avr-libc \
 					binutils>0:devel/avr-binutils
 
-USES=		gmake gettext python:3.9 \
+USES=		gmake gettext-runtime python:3.9 \
 			gettext-tools shebangfix
 
 SHEBANG_GLOB=	*.sh *.py home2l-drv-weather check_pdf_links \
