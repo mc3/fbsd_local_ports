@@ -15,8 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	bash>0:shells/bash \
 					mosquitto>0:net/mosquitto \
-					avrdude>0:devel/avrdude \
-                    gettext>0:devel/gettext-runtime
+					avrdude>0:devel/avrdude
 
 LIB_DEPENDS=	libmosquitto.so:net/mosquitto \
 					libmosquittopp.so:net/mosquitto \
