@@ -27,7 +27,10 @@ BUILD_DEPENDS=	bash>0:shells/bash \
 					readline>0:devel/readline \
 					sdl2>0:devel/sdl20 \
 					sdl2_ttf>0:graphics/sdl2_ttf \
-					GraphicsMagick>0:graphics/GraphicsMagick \
+					## pkg: libwmf-nox11-0.2.13 conflicts with libwmf-0.2.13
+					## (installs files into the same place).
+					## Problematic file: /usr/local/bin/libwmf-config
+					## GraphicsMagick>0:graphics/GraphicsMagick \
 					inkscape>0:graphics/inkscape \
 					optipng>0:graphics/optipng \
 					avr-gcc>0:devel/avr-gcc \
