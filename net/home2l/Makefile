@@ -15,7 +15,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	bash>0:shells/bash \
 					mosquitto>0:net/mosquitto \
-					avrdude>0:devel/avrdude
+					avrdude>0:devel/avrdude \
+                    gettext>0:devel/gettext-runtime
 
 LIB_DEPENDS=	libmosquitto.so:net/mosquitto \
 					libmosquittopp.so:net/mosquitto \
@@ -33,7 +34,6 @@ BUILD_DEPENDS=	bash>0:shells/bash \
 					avr-gcc>0:devel/avr-gcc \
 					avr-libc>0:devel/avr-libc \
 					binutils>0:devel/avr-binutils
-
 
 USES=		gmake gettext python:3.9 \
 			gettext-tools shebangfix
