@@ -15,7 +15,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	bash>0:shells/bash \
 					mosquitto>0:net/mosquitto \
-					avrdude>0:devel/avrdude
+					avrdude>0:devel/avrdude \
+					${PYTHON_PKGNAMEPREFIX}psycopg>0:databases/py-psycopg@${PY_FLAVOR}
 
 LIB_DEPENDS=	libmosquitto.so:net/mosquitto \
 					libmosquittopp.so:net/mosquitto \
@@ -32,10 +33,9 @@ BUILD_DEPENDS=	bash>0:shells/bash \
 					optipng>0:graphics/optipng \
 					avr-gcc>0:devel/avr-gcc \
 					avr-libc>0:devel/avr-libc \
-					binutils>0:devel/avr-binutils \
-					${PYTHON_PKGNAMEPREFIX}psycopg>0:databases/py-psycopg@${PY_FLAVOR}
+					binutils>0:devel/avr-binutils
 
-USES=		gmake gettext-runtime python:3.9 \
+USES=		gmake gettext python:3.9 \
 			gettext-tools shebangfix
 
 SHEBANG_GLOB=	*.sh *.py home2l-drv-weather check_pdf_links \
