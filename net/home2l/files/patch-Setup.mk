@@ -1,6 +1,11 @@
---- Setup.mk.orig	2022-08-31 21:42:24 UTC
+--- Setup.mk.orig	2024-06-01 09:46:41 UTC
 +++ Setup.mk
-@@ -27,15 +27,17 @@
+@@ -1,3 +1,4 @@
++
+ # This file is part of the Home2L project.
+ #
+ # (C) 2015-2024 Gundolf Kiefer
+@@ -27,15 +28,17 @@
  
  
  # Build directory...
@@ -21,7 +26,7 @@
  ARCH ?= $(HOST_ARCH)
  
  
-@@ -49,9 +51,9 @@ ARCH ?= $(HOST_ARCH)
+@@ -49,9 +52,9 @@ DEBUG ?= 1
  DEBUG ?= 1
  
  
@@ -33,7 +38,7 @@
  ######################### Build environment configuration ######################
  
  
-@@ -68,11 +70,12 @@ DEBUG ?= 1
+@@ -68,11 +71,13 @@ DEBUG ?= 1
  #   The Makefiles are tested with 'bash' as the standard shell.
  #   'dash' (the Debian default) does not work, since its integrated 'echo'
  #   command does not support the '-e' option.
@@ -42,14 +47,14 @@
 +MAKE := /usr/local/bin/gmake
 +PYTHON := /usr/local/bin/python3
  
--
+ 
  # Python (used in 'resources') ...
--PYTHON_INCLUDE := /usr/include/python3.9
-+PYTHON_INCLUDE := /usr/local/include/python3.9
+-PYTHON_INCLUDE := /usr/include/python3.11
++PYTHON_INCLUDE := /usr/local/include/python3.11
  
  
  # C/C++ Compiler & strip option for 'install'...
-@@ -87,7 +90,7 @@ PYTHON_INCLUDE := /usr/include/python3.9
+@@ -87,7 +92,7 @@ ifeq ($(ARCH),$(HOST_ARCH))
  # 'STRIP' is the option passed to 'install(1)' to strip binaries during installation.
  #
  ifeq ($(ARCH),$(HOST_ARCH))
@@ -58,25 +63,25 @@
    STRIP := -s
  else
    ifeq ($(ARCH),amd64)
-@@ -103,7 +106,7 @@ else
-     #       'g++-8-multilib' has been installed manually. The same holds for
-     #       compiling 'i386' binaries on an 'amd64' machine.
+@@ -96,7 +101,7 @@ else
+     #       conflicts with the 'armhf' cross-building tools (see below).
+     #       The workaround is to install 'g++-12-multilib' instead.
      ifeq ($(HOST_ARCH),i386)
 -      CC := g++ -m64 -no-pie
 +      CC := c++ -m64 -no-pie
        STRIP := -s
      endif
    endif
-@@ -111,7 +114,7 @@ else
+@@ -104,7 +109,7 @@ else
      # Note: Cross-building for 'i386' on 'amd64' works after installing
-     #       'g++-10-multilib' (see comments above).
+     #       'g++-*-multilib' (see comments above).
      ifeq ($(HOST_ARCH),amd64)
 -      CC := g++ -m32 -no-pie
 +      CC := c++ -m32 -no-pie
        STRIP := -s
      endif
    endif
-@@ -121,8 +124,8 @@ else
+@@ -114,8 +119,8 @@ else
      #       'deb http://emdebian.org/tools/debian/ jessie main'.
      # Note [2017-07-22]: The option '-static-libstdc++' is added for armhf to create
      #       binaries with the chance to run under both Debian Jessie and Debian Stretch.
@@ -87,7 +92,7 @@
    endif
  endif
  ifndef CC
-@@ -175,8 +178,12 @@ CFLAGS := -MMD -g -Wall -pthread -I.
+@@ -168,8 +173,12 @@ SRC :=
    #  -DBUILD_OS=\"Debian\" -DBUILD_ARCH=\"$(ARCH)\"
  LDFLAGS := -pthread
  SRC :=
@@ -101,7 +106,7 @@
  # Release settings modifications ...
  ifeq ($(DEBUG),0)       # Optimize for speed, but do not sacrifice code size too much
  CFLAGS += -O2
-@@ -208,6 +215,7 @@ endif
+@@ -201,6 +210,7 @@ CFLAGS := $(filter-out -O%,$(CFLAGS))
  #   To be tested again after the next Debian/GCC release.
  ifeq ($(ARCH),armhf)
  CFLAGS := $(filter-out -O%,$(CFLAGS))
@@ -109,7 +114,7 @@
  endif
  
  
-@@ -220,7 +228,7 @@ endif
+@@ -213,7 +223,7 @@ ifeq ($(BUILD_VERSION),)
  
  # Version ...
  ifeq ($(BUILD_VERSION),)

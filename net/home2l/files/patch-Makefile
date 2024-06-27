@@ -1,21 +1,18 @@
---- Makefile.orig	2023-04-17 20:01:43 UTC
+--- Makefile.orig	2024-06-20 17:32:18 UTC
 +++ Makefile
-@@ -18,10 +18,11 @@
+@@ -17,6 +17,9 @@
+ 
  
  # This is the master Makefile for the Home2L build system.
- 
++ 
 +# prevent tools from being built for ARCH arm and to build wallclock for now
 +CFG ?= basic
  
  
  
--
- ############################## Configuration ###################################
- 
- 
-@@ -33,14 +34,14 @@ ifeq ($(CFG),minimal)
+@@ -33,14 +36,14 @@ ifeq ($(CFG),minimal)
    # Minimal set ...
-   MODS ?= tools resources
+   MODS ?= tools showcase resources
    DRVS ?=
 -  ARCHS ?= $(shell dpkg --print-architecture)
 +  ARCHS ?= $(shell uname -p)
@@ -23,23 +20,32 @@
    export WITH_READLINE ?= 0
  else ifeq ($(CFG),basic)
    # Basic set ...
-   MODS ?= tools resources brownies
+   MODS ?= tools showcase resources brownies
    DRVS ?= gpio mqtt brownies weather
 -  ARCHS ?= $(shell dpkg --print-architecture)
 +  ARCHS ?= $(shell uname -p)
    # (the following WallClock settings presently have no effect, since WallClock is excluded from the basic build)
    export WITH_ANDROID ?= 0
    export WITH_PHONE ?= 0
-@@ -51,7 +52,7 @@ else ifeq ($(CFG),demo)
+@@ -51,7 +54,7 @@ else ifeq ($(CFG),demo)
    # Modules for the demo image ...
-   MODS ?= tools resources brownies wallclock locales
-   DRVS ?= demo gpio mqtt brownies weather
+   MODS ?= tools showcase resources brownies wallclock locales
+   DRVS ?= demo gpio mqtt brownies weather mpd
 -  ARCHS ?= $(shell dpkg --print-architecture)
 +  ARCHS ?= $(shell uname -p)
    export WITH_ANDROID ?= 0
    export WITH_PHONE ?= 0
    export WITH_GSTREAMER ?= 0
-@@ -240,6 +241,11 @@ export BUILD_VERSION := $(BUILD_VERSION)
+@@ -64,7 +67,7 @@ endif
+ 
+ 
+ # Preset release build...
+-export DEBUG ?= 0
++export DEBUG ?= 1
+ 
+ 
+ 
+@@ -255,6 +258,11 @@ build:
  #     3. It is now (unnecessarily) re-compiled, leading to an unnecessary re-linking
  
  build:

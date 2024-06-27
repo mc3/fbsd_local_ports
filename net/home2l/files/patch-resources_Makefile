@@ -1,14 +1,6 @@
---- resources/Makefile.orig	2021-12-10 19:40:51 UTC
+--- resources/Makefile.orig	2024-06-01 09:46:41 UTC
 +++ resources/Makefile
-@@ -153,16 +153,19 @@ endif
- 
- 
- install-indep:
--	install -Dp -m 755 -t $(HOME2L_INSTALL)/bin home2l-showhouse
-+	BIN=$(HOME2L_INSTALL)/bin; \
-+	install -d $$BIN; \
-+	install -p -m 755 home2l-showhouse $$BIN
- 
+@@ -158,11 +158,12 @@ install-arch:
  install-arch:
  	BIN=$(HOME2L_INSTALL)/bin/$(ARCH);   \
  	LIB=$(HOME2L_INSTALL)/lib/$(ARCH);   \

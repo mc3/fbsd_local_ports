@@ -1,11 +1,11 @@
---- tools/home2l-adb.orig	2022-04-02 18:47:40 UTC
+--- tools/home2l-adb.orig	2024-06-20 21:12:06 UTC
 +++ tools/home2l-adb
-@@ -137,7 +137,7 @@ case "$1" in
-     run_adb "shell su $APK_UID mkdir -p $APK_ROOT/.update"
-     run_adb "shell su $APK_UID chmod 777 $APK_ROOT/.update"
-     # Push (upload) the 'etc' tree ...
--    run_adb "push `realpath /opt/home2l/etc` $APK_ROOT/.update/etc"
+@@ -157,7 +157,7 @@ case "$1" in
+     cd $TMP_DIR
+     tar cf home2l-update.tar FILES EXECUTABLE etc/
+     run_adb "shell (rm -fr $ANDROID_UPDATE_DIR; mkdir -p $ANDROID_UPDATE_DIR)"
+-    run_adb "push home2l-update.tar $ANDROID_UPDATE_DIR/"
 +    run_adb "push `realpath /usr/local/home2l/etc` $APK_ROOT/.update/etc"
-     # Copy the upload into place (this will set the owner properly) ...
-     run_adb "shell su $APK_UID rm -fr $APK_ROOT/home2l/etc"
-     run_adb "shell su $APK_UID cp -r $APK_ROOT/.update/etc $APK_ROOT/home2l/"  2>&1 | grep -v etc/gpio
+     run_adb "shell (cd $ANDROID_UPDATE_DIR/; tar xf home2l-update.tar && rm home2l-update.tar)"
+     rm -fr $TMP_DIR
+     ;;

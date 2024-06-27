@@ -1,6 +1,6 @@
---- wallclock/Makefile.orig	2022-05-11 15:28:58 UTC
+--- wallclock/Makefile.orig	2024-06-01 09:46:41 UTC
 +++ wallclock/Makefile
-@@ -360,7 +360,8 @@ build-arch: $(WALLCLOCK_BIN)
+@@ -408,7 +408,8 @@ install-arch:
  
  install-arch:
  	BIN=$(HOME2L_INSTALL)/bin/$(ARCH);   \
@@ -8,13 +8,14 @@
 +	install -d $$BIN; \
 +	install -ps -m 755 $(WALLCLOCK_BIN) $$BIN;
  
- endif
  
-@@ -372,15 +373,19 @@ endif
+ endif
+@@ -421,16 +422,19 @@ install-indep:
  
  
  install-indep:
 -	install -Dp -m 755 -t $(HOME2L_INSTALL)/bin home2l-fpc; \
+-	install -Dp -m 755 -t $(HOME2L_INSTALL)/bin home2l-icon; \
 -	install -Dp -m 755 -t $(HOME2L_INSTALL)/bin h2l-sysinfo.sh; \
 +	install -d $(HOME2L_INSTALL)/bin $(HOME2L_INSTALL)/share/icons \
 +	           $(HOME2L_INSTALL)/share/fonts $(HOME2L_INSTALL)/share/sounds \

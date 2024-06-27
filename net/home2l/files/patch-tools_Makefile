@@ -1,14 +1,6 @@
---- tools/Makefile.orig	2023-04-15 13:42:46 UTC
+--- tools/Makefile.orig	2024-06-01 09:46:41 UTC
 +++ tools/Makefile
-@@ -74,7 +74,6 @@ INITD := initd-home2l
- 
- ############################## etc/floorplan ###################################
- 
--
- etc/floorplan.fpo:
- 	$(HOME2L_SRC)/wallclock/home2l-fpc etc/floorplan.svg
- 
-@@ -82,6 +81,15 @@ etc/floorplan.fpo:
+@@ -72,6 +72,15 @@ INITD := initd-home2l
  
  
  
@@ -24,36 +16,22 @@
  ############################## Build system targets ############################
  
  
-@@ -97,16 +105,27 @@ build-arch: $(DAEMON_BIN)
+@@ -86,12 +95,15 @@ install-indep:
  
  install-indep:
  	@echo "Creating "$(HOME2L_INSTALL)"/VERSION..."; echo "Home2l "$(BUILD_VERSION)" "$(BUILD_DATE) > $(HOME2L_INSTALL)/VERSION; chmod 644 $(HOME2L_INSTALL)/VERSION
--	install -Dp -m 755 -t $(HOME2L_INSTALL)/bin $(SCRIPTS)
 -	install -Dp -m 644 -t $(HOME2L_INSTALL) env.sh README
+-	install -Dp -m 755 -t $(HOME2L_INSTALL)/bin $(SCRIPTS)
 -	install -Dp -m 755 -t $(HOME2L_INSTALL)/install $(INITD)
 -	install -Dp -m 755 -t $(HOME2L_INSTALL)/bin h2l-mkdir.sh
-+	install -d $(HOME2L_INSTALL)/bin $(HOME2L_INSTALL)/install \
-+	           $(HOME2L_INSTALL)/etc $(HOME2L_INSTALL)/share/examples \
-+	           $(HOME2L_INSTALL)/share/examples/secrets
-+	##install -Dp -m 755 -t $(HOME2L_INSTALL)/bin $(SCRIPTS)
-+	install -p -m 755 $(SCRIPTS) $(HOME2L_INSTALL)/bin
-+	##install -Dp -m 755 -t $(HOME2L_INSTALL) env.sh README
 +	install -p -m 644 env.sh README $(HOME2L_INSTALL)
-+	##install -Dp -m 755 -t $(HOME2L_INSTALL)/install $(INITD)
-+	install -p -m 755 $(INITD) $(HOME2L_INSTALL)/install
-+	##install -Dp -m 755 -t $(HOME2L_INSTALL)/bin h2l-mkdir.sh
++	install -d $(HOME2L_INSTALL)/bin
++	install -p -m 755 $(SCRIPTS) $(HOME2L_INSTALL)/bin
 +	install -p -m 755 h2l-mkdir.sh $(HOME2L_INSTALL)/bin
-+	install -p -m 644 $(EXAMPLES) $(HOME2L_INSTALL)/share/examples
-+	install -p -m 644 etc/secrets/home2l-secrets.conf \
-+	  $(HOME2L_INSTALL)/share/examples/secrets
- 	if [ ! -e $(HOME2L_INSTALL)/etc ]; then \
--	  find etc/ -type f -exec install -Dpm 644 "{}" "$(HOME2L_INSTALL)/{}" \; ; \
-+	  ##find etc/ -type f -exec install -Dpm 644 "{}" "$(HOME2L_INSTALL)/{}" \; ; \
-+	  find etc/ -type f -exec install -pm 644 "$(HOME2L_INSTALL)/{}" "{}" \; ; \
- 	  chmod a+x $(HOME2L_INSTALL)/etc/rules-* ; \
- 	fi
++	install -d $(HOME2L_INSTALL)/install
++	install -p -m 755 $(INITD) $(HOME2L_INSTALL)/install
  
--
+ 
  install-arch:
 -	BIN=$(HOME2L_INSTALL)/bin/$(ARCH);   \
 -	install -Dp $(STRIP) -m 755 -t $$BIN $(DAEMON_BIN);   \
